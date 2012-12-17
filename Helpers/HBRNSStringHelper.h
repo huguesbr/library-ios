@@ -11,5 +11,6 @@
 
 
 #define $ NSString stringWithFormat:
+#define NSMakeStringWithFormat(format, ...) [NSString stringWithFormat:format, __VA_ARGS__]
 
 #endif
