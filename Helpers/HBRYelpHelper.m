@@ -19,9 +19,9 @@
 {
     NSString *yelpURLString;
 	if ([self isYelpInstalled]) {
-        yelpURLString = [@"yelp:///" stringByAppendingFormat:@"%@", path];
+        yelpURLString = [@"yelp://" stringByAppendingFormat:@"%@", path];
     } else {
-        yelpURLString = [@"http://yelp.com/" stringByAppendingFormat:@"%@", path];
+        yelpURLString = [@"http://yelp.com" stringByAppendingFormat:@"%@", path];
     }
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:yelpURLString]];
 }
