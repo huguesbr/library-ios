@@ -10,14 +10,23 @@
 #import "UIView+Extra.h"
 #import <QuartzCore/QuartzCore.h>
 
-@implementation UIImageView (Extra)
+@implementation UIImageView (RoundedCellImageView)
 
 -(void)layoutSubviews
 {
     [super layoutSubviews];
     
-    if(!self.layer.cornerRadius){
-        [self makeRoundedCornerWithRadius:5. border:.2];
+    UIView *superview = self.superview;
+    while(superview){
+        if([superview isKindOfClass:[UITableViewCell class]]) {
+            NSLog(@"radius: %g", self.layer.cornerRadius);
+//            if(self.layer.cornerRadius != 5.) {
+                [self makeRoundedCornerWithRadius:5. border:.2];
+//            }
+            break;
+        } else {
+            superview = superview.superview;
+        }
     }
 }
 

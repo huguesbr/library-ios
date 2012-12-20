@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UIImageView (Extra)
+@interface UIImageView (RoundedCellImageView)
 
 @end
