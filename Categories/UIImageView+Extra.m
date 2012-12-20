@@ -9,6 +9,7 @@
 #import "UIImageView+Extra.h"
 #import "UIView+Extra.h"
 #import <QuartzCore/QuartzCore.h>
+#import <MapKit/MapKit.h>
 
 @implementation UIImageView (RoundedCellImageView)
 
@@ -18,7 +19,9 @@
     
     UIView *superview = self.superview;
     while(superview){
-        if([superview isKindOfClass:[UITableViewCell class]]) {
+        if([superview isKindOfClass:[MKMapView class]]) {
+            break;
+        } else if([superview isKindOfClass:[UITableViewCell class]]) {
 //            if(self.layer.cornerRadius != 5.) {
                 [self makeRoundedCornerWithRadius:5. border:.2];
 //            }
