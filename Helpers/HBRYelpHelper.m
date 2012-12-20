@@ -19,7 +19,7 @@
 {
     NSString *yelpURLString;
 	if ([self isYelpInstalled]) {
-        yelpURLString = [@"yelp://" stringByAppendingFormat:@"%@", path];
+        yelpURLString = [@"yelp:///" stringByAppendingFormat:@"%@", path];
     } else {
         yelpURLString = [@"http://yelp.com/" stringByAppendingFormat:@"%@", path];
     }
