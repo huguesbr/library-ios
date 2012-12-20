@@ -19,7 +19,6 @@
     UIView *superview = self.superview;
     while(superview){
         if([superview isKindOfClass:[UITableViewCell class]]) {
-            NSLog(@"radius: %g", self.layer.cornerRadius);
 //            if(self.layer.cornerRadius != 5.) {
                 [self makeRoundedCornerWithRadius:5. border:.2];
 //            }
