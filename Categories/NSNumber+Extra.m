@@ -22,4 +22,11 @@
     return [self numberWithString:aString numberStyle:NSNumberFormatterDecimalStyle];
 }
 
+- (NSString *)stringWithNumberStyle:(NSNumberFormatterStyle)style;
+{
+    NSNumberFormatter * f = [[NSNumberFormatter alloc] init];
+    [f setNumberStyle:style];
+    return [f stringFromNumber:self];
+}
+
 @end

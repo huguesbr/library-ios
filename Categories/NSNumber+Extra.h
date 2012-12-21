@@ -12,5 +12,6 @@
 
 + (NSNumber *)numberWithString:(NSString *)aString numberStyle:(NSNumberFormatterStyle)style;
 + (NSNumber *)numberWithString:(NSString *)aString;
+- (NSString *)stringWithNumberStyle:(NSNumberFormatterStyle)style;
 
 @end
