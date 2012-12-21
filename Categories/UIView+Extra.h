@@ -16,4 +16,6 @@
 
 - (void)makeRoundedCornerWithRadius:(CGFloat)radius border:(CGFloat)border color:(UIColor *)color clipBound:(BOOL)clip;
 
+- (void)setRasterizationScale:(CGFloat)rasterizationScale;
+
 @end

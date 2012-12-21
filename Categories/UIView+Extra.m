@@ -29,4 +29,16 @@
     self.layer.masksToBounds = clip;
 }
 
+- (void)setRasterizationScale:(CGFloat)rasterizationScale;
+{
+    CALayer *layer = [self layer];
+    [layer setRasterizationScale:rasterizationScale];
+    if(rasterizationScale == 1.){
+        [layer setShouldRasterize:NO];
+    } else {
+        [layer setShouldRasterize:YES];
+    }
+
+}
+
 @end
