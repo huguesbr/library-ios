@@ -8,6 +8,8 @@
 
 #import "NSError+Alert.h"
 
+#import "UIAlertView+Alert.h"
+
 @implementation NSError (Alert)
 
 - (void)show
@@ -17,7 +19,7 @@
 
 - (void)showWithTitle:(NSString *)title
 {
-    [[[UIAlertView alloc] initWithTitle:title message:[self localizedDescription] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+    [UIAlertView showAlertViewWithTitle:title message:[self localizedDescription]];
 }
 
 @end
