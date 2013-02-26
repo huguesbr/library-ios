@@ -7,6 +7,7 @@
 //
 
 #import "UIAlertView+Alert.h"
+#import <UIAlertView+BlocksKit.h>
 
 #ifndef kUIAlertDefaultCancelButtonTitle
 #define kUIAlertDefaultCancelButtonTitle @"Dismiss"
@@ -16,17 +17,17 @@
 
 + (void)showAlertViewWithTitle:(NSString *)title message:(NSString *)message dismissButtonTitle:(NSString *)dismissButtonTitle;
 {
-    [[[UIAlertView alloc] initWithTitle:title message:message delegate:nil cancelButtonTitle:dismissButtonTitle otherButtonTitles:nil] show];
+    [[[[self class] alloc] initWithTitle:title message:message delegate:nil cancelButtonTitle:dismissButtonTitle otherButtonTitles:nil] show];
 }
 
 + (void)showAlertViewWithTitle:(NSString *)title message:(NSString *)message;
 {
-    [[[UIAlertView alloc] initWithTitle:title message:message delegate:nil cancelButtonTitle:kUIAlertDefaultCancelButtonTitle otherButtonTitles:nil] show];
+    [[[[self class] alloc] initWithTitle:title message:message delegate:nil cancelButtonTitle:kUIAlertDefaultCancelButtonTitle otherButtonTitles:nil] show];
 }
 
 + (void)showAlertViewWithTitle:(NSString *)title;
 {
-    [[[UIAlertView alloc] initWithTitle:title message:nil delegate:nil cancelButtonTitle:kUIAlertDefaultCancelButtonTitle otherButtonTitles:nil] show];
+    [[[[self class] alloc] initWithTitle:title message:nil delegate:nil cancelButtonTitle:kUIAlertDefaultCancelButtonTitle otherButtonTitles:nil] show];
 }
 
 @end

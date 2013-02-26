@@ -34,4 +34,9 @@
 - (id)initWithImageNamed:(NSString *)imageNamed forStates:(UIControlState)states;
 - (id)initWithImageNamed:(NSString *)imageNamed forStatesSuffix:(NSDictionary *)suffixes;
 
++ (UIButton *)buttonWithImageNamed:(NSString *)imageNamed hightlighedImageNamed:(NSString *)highlightedImageNamed selectedImageNamed:(NSString *)selectedImageNamed disabledImageNamed:(NSString *)disabledImageNamed size:(CGSize)size;
++ (UIButton *)buttonWithImageNamed:(NSString *)imageNamed hightlighedImageNamed:(NSString *)highlightedImageNamed;
++ (UIButton *)buttonWithImageNamed:(NSString *)imageNamed;
++ (UIButton *)buttonWithImageNamed:(NSString *)imageNamed forStates:(UIControlState)states;
+
 @end

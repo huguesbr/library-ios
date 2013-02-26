@@ -38,7 +38,11 @@
     } else {
         [layer setShouldRasterize:YES];
     }
+}
 
+- (BOOL)isAnimating;
+{
+    return self.layer.animationKeys.count ? YES : NO;
 }
 
 @end

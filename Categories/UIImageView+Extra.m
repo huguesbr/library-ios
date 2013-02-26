@@ -13,23 +13,23 @@
 
 @implementation UIImageView (RoundedCellImageView)
 
--(void)layoutSubviews
-{
-    [super layoutSubviews];
-    
-    UIView *superview = self.superview;
-    while(superview){
-        if([superview isKindOfClass:[MKMapView class]]) {
-            break;
-        } else if([superview isKindOfClass:[UITableViewCell class]]) {
-//            if(self.layer.cornerRadius != 5.) {
-                [self makeRoundedCornerWithRadius:5. border:.2];
-//            }
-            break;
-        } else {
-            superview = superview.superview;
-        }
-    }
-}
+//-(void)layoutSubviews
+//{
+//    [super layoutSubviews];
+//    
+//    UIView *superview = self.superview;
+//    while(superview){
+//        if([superview isKindOfClass:[MKMapView class]] || [superview isKindOfClass:[UIButton class]]) {
+//            break;
+//        } else if([superview isKindOfClass:[UITableViewCell class]]) {
+////            if(self.layer.cornerRadius != 5.) {
+//                [self makeRoundedCornerWithRadius:5. border:.2];
+////            }
+//            break;
+//        } else {
+//            superview = superview.superview;
+//        }
+//    }
+//}
 
 @end

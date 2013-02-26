@@ -18,4 +18,6 @@
 
 - (void)setRasterizationScale:(CGFloat)rasterizationScale;
 
+- (BOOL)isAnimating;
+
 @end

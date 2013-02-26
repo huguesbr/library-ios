@@ -9,8 +9,17 @@
 #import "UIViewController+Activity.h"
 #import "NSObject+AssociatedObject.h"
 
-#ifndef kUIActivityIndicatorViewDefaultStyle
-#define kUIActivityIndicatorViewDefaultStyle UIActivityIndicatorViewStyleWhite
+#ifdef kUIActivityIndicatorViewDefaultStyle
+#define kUINavBarActivityIndicatorViewDefaultStyle kUIActivityIndicatorViewDefaultStyle
+#define kUIViewActivityIndicatorViewDefaultStyle kUIActivityIndicatorViewDefaultStyle
+#endif
+
+#ifndef kUINavBarActivityIndicatorViewDefaultStyle
+#define kUINavBarActivityIndicatorViewDefaultStyle UIActivityIndicatorViewStyleWhite
+#endif
+
+#ifndef kUIViewActivityIndicatorViewDefaultStyle
+#define kUIViewActivityIndicatorViewDefaultStyle UIActivityIndicatorViewStyleGray
 #endif
 
 #define kAssociatedActivityIndicatorKey "AssociatedActivityIndicatorKey"
@@ -22,7 +31,7 @@
 {
     UIActivityIndicatorView *activityIndicator = [self associatedObjectforKey:kAssociatedActivityIndicatorKey];
     if(!activityIndicator){
-        activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:kUIActivityIndicatorViewDefaultStyle];
+        activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:kUINavBarActivityIndicatorViewDefaultStyle];
         [self setAssociatedObject:activityIndicator forKey:kAssociatedActivityIndicatorKey];
     }
     return activityIndicator;
