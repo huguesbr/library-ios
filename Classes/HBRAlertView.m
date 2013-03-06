@@ -42,7 +42,9 @@
         } else if ([[subview class] isSubclassOfClass:[UIButton class]]) {
             // Remove shadow on button
             UIButton *button = (UIButton *) subview;
+#if kNUIEnabled
             [NUIRenderer renderButton:button withClass:@"Button"];
+#endif
 //            [button.subviews enumerateObjectsUsingBlock:^(UIView *view, NSUInteger idx, BOOL *stop) {
 //                if([view isKindOfClass:[UIImageView class]]){
 //                    view.hidden = YES;
