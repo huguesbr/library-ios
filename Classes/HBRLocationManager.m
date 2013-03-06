@@ -144,9 +144,13 @@
             {
                 // skip until restart, ask only once per session
                 self.promptForLocation = HBRLocationManagerPromptForLocationSkip;
-                [HBRAlertView showAlertViewWithTitle:@"Geolocation" message:@"In order to find deal around you, \nwe would like you to share your your location" cancelButtonTitle:nil otherButtonTitles:@[@"Share always", @"Share this time only", @"Never ask again", @"Not this time"] handler:^(UIAlertView *alertView, NSInteger buttonIndex) {
+//                , @"Share this time only", @"Never ask again"
+                [HBRAlertView showAlertViewWithTitle:@"Geolocation" message:@"In order to find deal around you, \nwe would like you to share your your location?" cancelButtonTitle:nil otherButtonTitles:@[@"Not this time", @"Share"] handler:^(UIAlertView *alertView, NSInteger buttonIndex) {
                     switch (buttonIndex) {
-                        case 0: // Share always
+                        case 0: // Not this time
+                            if (failureBlock) failureBlock();
+                            break;
+                        case 1: // Share always
                         {
                             [self updateLocationWithSuccess:^(NSArray *locations) {
                                 if (block) block ([locations firstObject]);
@@ -158,7 +162,7 @@
                             [HBRLocationManager setPromptForLocation:HBRLocationManagerPromptForLocationSkip];
                         }
                             break;
-                        case 1: // Share this time only
+                        case 2: // Share this time only
                         {
                             [self updateLocationWithSuccess:^(NSArray *locations) {
                                 if (block) block ([locations firstObject]);
@@ -168,11 +172,8 @@
                             }];
                         }
                             break;
-                        case 2: // Never ask again
+                        case 3: // Never ask again
                             [[self class] setPromptForLocation:HBRLocationManagerPromptForLocationNever];
-                            if (failureBlock) failureBlock();
-                            break;
-                        case 3: // Not this time
                             if (failureBlock) failureBlock();
                             break;
                             
