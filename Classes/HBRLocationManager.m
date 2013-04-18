@@ -145,7 +145,7 @@
                 // skip until restart, ask only once per session
                 self.promptForLocation = HBRLocationManagerPromptForLocationSkip;
 //                , @"Share this time only", @"Never ask again"
-                [HBRAlertView showAlertViewWithTitle:@"Geolocation" message:@"In order to find deal around you, \nwe would like you to share your your location?" cancelButtonTitle:nil otherButtonTitles:@[@"Not this time", @"Share"] handler:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                [UIAlertView showAlertViewWithTitle:@"Geolocation" message:@"In order to find deal around you, \nwe would like you to share your your location?" cancelButtonTitle:nil otherButtonTitles:@[@"Not this time", @"Share"] handler:^(UIAlertView *alertView, NSInteger buttonIndex) {
                     switch (buttonIndex) {
                         case 0: // Not this time
                             if (failureBlock) failureBlock();
