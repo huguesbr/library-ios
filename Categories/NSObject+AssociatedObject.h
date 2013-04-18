@@ -16,6 +16,7 @@
 
 - (void)setAssociatedObject:(id)object forKey:(const void *)key;
 - (id)associatedObjectforKey:(const void *)key;
+- (void)removeAssociatedObjectForKey:(const void *)key;
 - (void)removeAssociatedObjects;
 
 @end

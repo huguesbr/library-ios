@@ -21,6 +21,11 @@
     return objc_getAssociatedObject(self, key);
 }
 
+- (void)removeAssociatedObjectForKey:(const void *)key;
+{
+    [self setAssociatedObject:nil forKey:key];
+}
+
 - (void)removeAssociatedObjects;
 {
     objc_removeAssociatedObjects(self);
