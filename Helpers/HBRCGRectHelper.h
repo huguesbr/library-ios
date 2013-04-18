@@ -7,8 +7,8 @@
 //
 
 
-#ifndef TFRectUtilities_h
-#define TFRectUtilities_h
+#ifndef HBRCGRectHelper_h
+#define HBRCGRectHelper_h
 
 #import <UIKit/UIKit.h>
 
