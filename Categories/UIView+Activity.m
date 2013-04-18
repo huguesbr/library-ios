@@ -7,36 +7,51 @@
 //
 
 #import "UIView+Activity.h"
+#import "NSObject+AssociatedObject.h"
+#import "UIActivityIndicatorView+Start.h"
 
 #define kAssociatedActivityIndicatorViewKey "AssociatedActivityIndicatorViewKey"
+#define kAssociatedUserInteractionBackupKey "AssociatedUserInteractionBackupKey"
 
 @implementation UIView (Activity)
 
 - (void)startActivityIndicator;
 {
-    UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    [spinner startAnimating];
+    [self startActivityIndicatorWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+}
+
+- (void)startActivityIndicatorWithActivityIndicatorStyle:(UIActivityIndicatorViewStyle)style;
+{
+    UIActivityIndicatorView *spinner = [UIActivityIndicatorView activityIndicatorStartedWithActivityIndicatorStyle:style];
     spinner.frame = self.bounds;
-    // store userInteraction flag in spinner tag to restore when stopping activity indicator
-    spinner.tag = self.userInteractionEnabled;
     [self addSubview:spinner];
+    [self setAssociatedObject:spinner forKey:kAssociatedActivityIndicatorViewKey];
 }
 
 - (void)startActivityIndicatorAndDisableUserInteraction;
 {
     [self startActivityIndicator];
+    [self setAssociatedObject:@(self.userInteractionEnabled) forKey:kAssociatedUserInteractionBackupKey];
     self.userInteractionEnabled = NO;
+    if([self isKindOfClass:[UIControl class]]){
+        [(UIControl *)self setEnabled:NO];
+    }
 }
 
 - (void)stopActivityIndicator;
 {
-    [self.subviews enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        if([obj isKindOfClass:[UIActivityIndicatorView class]]){
-            self.userInteractionEnabled = [obj tag];
-            [obj stopAnimating];
-            [obj removeFromSuperview];
+    UIActivityIndicatorView *spinner = [self associatedObjectforKey:kAssociatedActivityIndicatorViewKey];
+    [spinner stopAnimating];
+    [spinner removeFromSuperview];
+    [self setAssociatedObject:nil forKey:kAssociatedActivityIndicatorViewKey];
+    
+    NSNumber *userInteractionEnabled = [self associatedObjectforKey:kAssociatedUserInteractionBackupKey];
+    if(userInteractionEnabled){
+        self.userInteractionEnabled = [userInteractionEnabled boolValue];
+        if([self isKindOfClass:[UIControl class]]){
+            [(UIControl *)self setEnabled:self.userInteractionEnabled];
         }
-    }];
+    }
 }
 
 @end

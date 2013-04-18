@@ -11,6 +11,7 @@
 @interface UIView (Activity)
 
 - (void)startActivityIndicator;
+- (void)startActivityIndicatorWithActivityIndicatorStyle:(UIActivityIndicatorViewStyle)style;
 - (void)startActivityIndicatorAndDisableUserInteraction;
 - (void)stopActivityIndicator;
 
