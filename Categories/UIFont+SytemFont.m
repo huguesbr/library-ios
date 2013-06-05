@@ -15,12 +15,12 @@
 
 + (UIFont *)boldSystemFontOfSize:(CGFloat)fontSize;
 {
-    return [UIFont fontWithName:@"HelveticaNeue" size:fontSize];
+    return [UIFont fontWithName:kUIFontSystemFontDefaultBold size:fontSize];
 }
 
 + (UIFont *)systemFontOfSize:(CGFloat)fontSize
 {
-    return [UIFont fontWithName:@"HelveticaNeue" size:fontSize];
+    return [UIFont fontWithName:kUIFontSystemFontDefault size:fontSize];
 }
 
 #pragma clang diagnostic pop

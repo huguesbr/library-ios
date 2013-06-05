@@ -7,6 +7,7 @@
 //
 
 #import "HBRAlertView.h"
+#import "UIView+Extra.h"
 
 @implementation HBRAlertView
 

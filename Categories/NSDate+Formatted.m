@@ -8,6 +8,7 @@
 
 #import "NSDate+Formatted.h"
 #import "NSObject+AssociatedObject.h"
+#import "NSDate+Formatter.h"
 
 #define kNSDateFormattedFormat ""
 

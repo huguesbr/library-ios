@@ -7,8 +7,8 @@
 //
 
 #import "NSError+Alert.h"
-
 #import <UIAlertView+BlocksKit.h>
+#import "UIAlertView+Alert.h"
 
 @implementation NSError (Alert)
 
@@ -20,9 +20,9 @@
 - (void)showWithTitle:(NSString *)title
 {
 #if DEBUG
-    [HBRAlertView showAlertViewWithTitle:title message:[self localizedDescription] cancelButtonTitle:@"Dismiss" otherButtonTitles:@[@"Debug"] handler:^(UIAlertView *alert, NSInteger buttonIndex) {
+    [UIAlertView showAlertViewWithTitle:title message:[self localizedDescription] cancelButtonTitle:@"Dismiss" otherButtonTitles:@[@"Debug"] handler:^(UIAlertView *alert, NSInteger buttonIndex) {
         if(buttonIndex != 0){ // Debug
-            [HBRAlertView showAlertViewWithTitle:[self localizedFailureReason] message:self.userInfo[@"backtrace"]];
+            [UIAlertView showAlertViewWithTitle:[self localizedFailureReason] message:self.userInfo[@"backtrace"]];
         }
     }];
 #else
