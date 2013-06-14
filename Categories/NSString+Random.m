@@ -1,9 +1,9 @@
 //
 //  NSString+Random.m
-//  OneDebit
+//  HBR
 //
 //  Created by Hugues Bernet-Rollande on 2/1/13.
-//  Copyright (c) 2013 OneDebit. All rights reserved.
+//  Copyright (c) 2013 HBR. All rights reserved.
 //
 
 #import "NSString+Random.h"

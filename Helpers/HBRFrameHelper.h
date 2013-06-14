@@ -1,13 +1,13 @@
 //
 //  HBRFrameHelper.h
-//  OneDebit
+//  HBR
 //
 //  Created by Hugues on 12/17/12.
-//  Copyright (c) 2012 OneDebit. All rights reserved.
+//  Copyright (c) 2012 HBR. All rights reserved.
 //
 
-#ifndef OneDebit_HBRFrameHelper_h
-#define OneDebit_HBRFrameHelper_h
+#ifndef HBR_HBRFrameHelper_h
+#define HBR_HBRFrameHelper_h
 
 #define CENTER_VERTICALLY(parent,child) floor((parent.frame.size.height - child.frame.size.height) / 2)
 #define CENTER_HORIZONTALLY(parent,child) floor((parent.frame.size.width - child.frame.size.width) / 2)

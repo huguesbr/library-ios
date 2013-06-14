@@ -1,9 +1,9 @@
 //
 //  NSDate+Formatted.h
-//  OneDebit
+//  HBR
 //
 //  Created by Hugues Bernet-Rollande on 1/23/13.
-//  Copyright (c) 2013 OneDebit. All rights reserved.
+//  Copyright (c) 2013 HBR. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>

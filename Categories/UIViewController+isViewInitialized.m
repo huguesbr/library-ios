@@ -1,9 +1,9 @@
 //
 //  UIViewController+FirstAppear.m
-//  OneDebit
+//  HBR
 //
 //  Created by Hugues Bernet-Rollande on 1/7/13.
-//  Copyright (c) 2013 OneDebit. All rights reserved.
+//  Copyright (c) 2013 HBR. All rights reserved.
 //
 
 #import "UIViewController+isViewInitialized.h"

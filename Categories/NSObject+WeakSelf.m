@@ -1,9 +1,9 @@
 //
 //  NSObject+WeakSelf.m
-//  OneDebit
+//  HBR
 //
 //  Created by Hugues Bernet-Rollande on 1/21/13.
-//  Copyright (c) 2013 OneDebit. All rights reserved.
+//  Copyright (c) 2013 HBR. All rights reserved.
 //
 
 #import "NSObject+WeakSelf.h"

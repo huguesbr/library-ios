@@ -1,9 +1,9 @@
 //
 //  HBRCLLocationManager.m
-//  OneDebit
+//  HBR
 //
 //  Created by Hugues Bernet-Rollande on 12/19/12.
-//  Copyright (c) 2012 OneDebit. All rights reserved.
+//  Copyright (c) 2012 HBR. All rights reserved.
 //
 
 #import "HBRLocationManager.h"

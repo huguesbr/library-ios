@@ -1,9 +1,9 @@
 //
 //  HBRNumberFormatter.h
-//  OneDebit
+//  HBR
 //
 //  Created by Hugues Bernet-Rollande on 12/20/12.
-//  Copyright (c) 2012 OneDebit. All rights reserved.
+//  Copyright (c) 2012 HBR. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>

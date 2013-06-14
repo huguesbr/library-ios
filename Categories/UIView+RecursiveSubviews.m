@@ -1,9 +1,9 @@
 //
 //  UIView+Subviews.m
-//  OneDebit
+//  HBR
 //
 //  Created by Hugues Bernet-Rollande on 1/22/13.
-//  Copyright (c) 2013 OneDebit. All rights reserved.
+//  Copyright (c) 2013 HBR. All rights reserved.
 //
 
 #import "UIView+RecursiveSubviews.h"

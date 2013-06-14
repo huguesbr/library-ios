@@ -1,13 +1,13 @@
 //
 //  HBRMath.h
-//  OneDebit
+//  HBR
 //
 //  Created by Hugues on 12/16/12.
-//  Copyright (c) 2012 OneDebit. All rights reserved.
+//  Copyright (c) 2012 HBR. All rights reserved.
 //
 
-#ifndef OneDebit_HBRMath_h
-#define OneDebit_HBRMath_h
+#ifndef HBR_HBRMath_h
+#define HBR_HBRMath_h
 
 // degree to radians
 #define ARAD	 0.017453f
