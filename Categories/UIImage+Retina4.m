@@ -7,6 +7,7 @@
 //
 
 #import "UIImage+Retina4.h"
+#import <Foundation/NSObjCRuntime.h>
 #import <objc/runtime.h>
 
 static Method origImageNamedMethod = nil;

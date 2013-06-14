@@ -19,15 +19,9 @@
 
 - (void)showWithTitle:(NSString *)title
 {
-#if DEBUG
-    [UIAlertView showAlertViewWithTitle:title message:[self localizedDescription] cancelButtonTitle:@"Dismiss" otherButtonTitles:@[@"Debug"] handler:^(UIAlertView *alert, NSInteger buttonIndex) {
-        if(buttonIndex != 0){ // Debug
-            [UIAlertView showAlertViewWithTitle:[self localizedFailureReason] message:self.userInfo[@"backtrace"]];
-        }
-    }];
-#else
-    [UIAlertView showAlertViewWithTitle:title message:[self localizedDescription]];
-#endif
+    NSLog(@"description: %@", self.description);
+    NSLog(@"localized: %@", self.localizedDescription);
+    [UIAlertView showAlertViewWithTitle:title message:self.localizedDescription];
 }
 
 @end

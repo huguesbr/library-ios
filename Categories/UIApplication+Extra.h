@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UIApplication (Name)
+@interface UIApplication (Extra)
+
 @property (readonly) NSString *name;
+@property (readonly) NSString *version;
+@property (readonly) NSString *revision;
+
 @end

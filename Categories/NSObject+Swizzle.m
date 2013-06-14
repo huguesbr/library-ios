@@ -7,6 +7,8 @@
 //
 
 #import "NSObject+Swizzle.h"
+#import <objc/runtime.h>
+#import <objc/message.h>
 
 #define kNSObjectSwizzlePrefix @"swizzle_"
 
