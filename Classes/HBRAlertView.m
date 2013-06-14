@@ -14,7 +14,7 @@
 -(id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:(CGRect)frame];
-    self.backgroundColor = kThemeLightColor;
+//    self.backgroundColor = kThemeLightColor;
     return self;
 }
 
