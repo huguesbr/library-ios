@@ -8,6 +8,7 @@
 
 #import "NSError+Alert.h"
 #import <UIAlertView+BlocksKit.h>
+#import "UIAlertView+Alert.h"
 
 @implementation NSError (Alert)
 
@@ -20,15 +21,7 @@
 {
     NSLog(@"description: %@", self.description);
     NSLog(@"localized: %@", self.localizedDescription);
-//#if DEBUG
-//    [UIAlertView showAlertViewWithTitle:title message:self.localizedDescription cancelButtonTitle:@"Dismiss" otherButtonTitles:@[@"Debug"] handler:^(UIAlertView *alert, NSInteger buttonIndex) {
-//        if(buttonIndex != 0){ // Debug
-////            [UIAlertView showAlertViewWithTitle::self.localizedDescription message:self.userInfo[@"backtrace"]];
-//        }
-//    }];
-//#else
     [UIAlertView showAlertViewWithTitle:title message:self.localizedDescription];
-//#endif
 }
 
 @end

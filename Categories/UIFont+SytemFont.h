@@ -11,6 +11,14 @@
  Hack to override default system font (and change all systemFont or boldSystemFont to a custom font)
  */
 
+#ifndef kUIFontSystemFontDefault
+#define kUIFontSystemFontDefault @"HelveticaNeue"
+#endif
+
+#ifndef kUIFontSystemFontDefaultBold
+#define kUIFontSystemFontDefaultBold @"HelveticaNeue"
+#endif
+
 #import <UIKit/UIKit.h>
 
 @interface UIFont (SytemFont)

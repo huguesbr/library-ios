@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+#ifndef kThemeLightColor
+#define kThemeLightColor [UIColor lightGrayColor]
+#endif
+
 @protocol HBRAlertViewDelegate <UIAlertViewDelegate>
 
 @end

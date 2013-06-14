@@ -10,6 +10,7 @@
 #import "NSObject+AssociatedObject.h"
 #import "HBRNumberFormatter.h"
 #import "HBRDebugHelper.h"
+#import "NSNumber+Extra.h"
 
 
 #define kNSNumberFormattedFormat ""

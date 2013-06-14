@@ -9,6 +9,7 @@
 
 #import "UIButton+Image.h"
 #import "HBRNSStringHelper.h"
+#import "HBRCGRectHelper.h"
 
 @implementation UIButton (Image)
 

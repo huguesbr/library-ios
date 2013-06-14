@@ -155,7 +155,7 @@
                             [self updateLocationWithSuccess:^(NSArray *locations) {
                                 if (block) block ([locations firstObject]);
                             } failure:^(NSError *error) {
-                                [[TKAlertCenter defaultCenter] postAlertWithMessage:@"Unable to determine your location" image:[UIImage imageNamed:@"alert-ico"]];
+//                                [[TKAlertCenter defaultCenter] postAlertWithMessage:@"Unable to determine your location" image:[UIImage imageNamed:@"alert-ico"]];
                                 if (failureBlock) failureBlock();
                             }];
                             // Always skip now
@@ -167,7 +167,7 @@
                             [self updateLocationWithSuccess:^(NSArray *locations) {
                                 if (block) block ([locations firstObject]);
                             } failure:^(NSError *error) {
-                                [[TKAlertCenter defaultCenter] postAlertWithMessage:@"Unable to determine your location" image:[UIImage imageNamed:@"alert-ico"]];
+//                                [[TKAlertCenter defaultCenter] postAlertWithMessage:@"Unable to determine your location" image:[UIImage imageNamed:@"alert-ico"]];
                                 if (failureBlock) failureBlock();
                             }];
                         }
