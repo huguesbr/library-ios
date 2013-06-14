@@ -8,6 +8,7 @@
 
 #import "UIImageView+SpinnerRemoteImage.h"
 #import "UIView+Activity.h"
+#import <AFNetworking/UIImageView+AFNetworking.h>
 
 @implementation UIImageView (SpinnerRemoteImage)
 

@@ -7,6 +7,7 @@
 //
 
 #import "UITableViewCell+aSyncImage.h"
+#import <AFNetworking/UIImageView+AFNetworking.h>
 
 @implementation UITableViewCell (aSyncImage)
 

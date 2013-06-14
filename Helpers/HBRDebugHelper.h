@@ -17,9 +17,6 @@
 #define NSLogObjectClass NSLog(@"Object class: %@", NSStringFromClass([self class]));
 #define NSLogFilename NSLog(@"Filename: %@", [[NSString stringWithUTF8String:__FILE__] lastPathComponent]);
 #define NSLogExtra(fmt, ...) NSLog(@"%s:%d (%s): " fmt, __FILE__, __LINE__, __func__, ## __VA_ARGS__)
-#if DEBUG
-#define NSLog(fmt, ...) NSLogExtra(fmt, ## __VA_ARGS__)
-#endif
 
 #define SuppressPerformSelectorLeakWarning(Stuff) \
 do { \
