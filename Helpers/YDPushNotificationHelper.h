@@ -10,6 +10,16 @@
 #import <UrbanAirship-iOS-SDK/UAPush.h>
 #import <UrbanAirship-iOS-SDK/UAirship.h>
 
+#define kSettingKeyShouldTryToRegisterForPushNotification       @"SettingKeyShouldTryToRegisterForPushNotification"
+#define kSettingKeyShouldPromptForPushNotification              @"SettingKeyShouldPromptForPushNotification"
+#define kSettingKeyLastPromptForPushNotification                @"SettingKeyLastPromptForPushNotification"
+#ifndef kAppTimeIntervalBeforeAskForPushNotificationAgain
+#define kAppTimeIntervalBeforeAskForPushNotificationAgain       3600 * 24 * 7 // ask every week
+#endif
+#ifndef kPushNotificationRegisterTypes
+#define kPushNotificationRegisterTypes  (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)
+#endif
+
 @interface YDPushNotificationHelper : NSObject
 
 + (BOOL)shouldPrompt;

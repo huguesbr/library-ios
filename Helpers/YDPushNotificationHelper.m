@@ -8,32 +8,25 @@
 
 #import "YDPushNotificationHelper.h"
 
-#define kShouldTryToRegisterKey                     @"ShouldTryToRegisterKey"
-#define kShouldPromptForNotificationKey             @"ShouldPromptForNotificationKey"
-#define kLastPromptForNotificationKey               @"LastPromptForNotificationKey"
-#ifndef kTimeIntervalBeforeAskForNotificationAgain
-#define kTimeIntervalBeforeAskForNotificationAgain  3600 * 24 * 7 // ask every week
-#endif
-#ifndef kNotificationType
-#define kNotificationType  (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)
-#endif
-
 @implementation YDPushNotificationHelper
 
 + (void)init
 {
-    [[NSUserDefaults standardUserDefaults] registerDefaults:@{kShouldTryToRegisterKey: @(NO), kShouldPromptForNotificationKey: @(YES)}];
+    [[NSUserDefaults standardUserDefaults] registerDefaults:@{
+          kSettingKeyShouldTryToRegisterForPushNotification: @(NO),
+                 kSettingKeyShouldPromptForPushNotification: @(YES)
+     }];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 + (BOOL)shouldTryToRegister;
 {
-    return [[NSUserDefaults standardUserDefaults] boolForKey:kShouldTryToRegisterKey];
+    return [[NSUserDefaults standardUserDefaults] boolForKey:kSettingKeyShouldTryToRegisterForPushNotification];
 }
 
 + (void)setShouldTryToRegister:(BOOL)shouldTryToRegister;
 {
-    [[NSUserDefaults standardUserDefaults] setBool:shouldTryToRegister forKey:kShouldTryToRegisterKey];
+    [[NSUserDefaults standardUserDefaults] setBool:shouldTryToRegister forKey:kSettingKeyShouldTryToRegisterForPushNotification];
 }
 
 + (BOOL)shouldPrompt;
@@ -41,16 +34,16 @@
     if([self shouldTryToRegister]) return NO; // never prompt if we already authorize
     
     // prompt if never prompt or last prompt was more than kTimeIntervalBeforeAskForNotificationAgain ago
-    BOOL shouldPrompt = [[NSUserDefaults standardUserDefaults] boolForKey:kShouldPromptForNotificationKey];
-    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:kShouldPromptForNotificationKey];
+    BOOL shouldPrompt = [[NSUserDefaults standardUserDefaults] boolForKey:kSettingKeyShouldPromptForPushNotification];
+    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:kSettingKeyShouldPromptForPushNotification];
     if(shouldPrompt == NO){
-        NSDate *date = [[NSUserDefaults standardUserDefaults] objectForKey:kLastPromptForNotificationKey];
+        NSDate *date = [[NSUserDefaults standardUserDefaults] objectForKey:kSettingKeyLastPromptForPushNotification];
         NSTimeInterval timeIntervalSinceLastPrompt = [[NSDate date] timeIntervalSinceDate:date];
-        if(!date || timeIntervalSinceLastPrompt > kTimeIntervalBeforeAskForNotificationAgain)
+        if(!date || timeIntervalSinceLastPrompt > kAppTimeIntervalBeforeAskForPushNotificationAgain)
             shouldPrompt = YES;
     }
     if(shouldPrompt == YES) // remember last prompt time
-        [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:kLastPromptForNotificationKey];
+        [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:kSettingKeyLastPromptForPushNotification];
     
     return shouldPrompt;
 }
@@ -85,7 +78,7 @@
 + (void)registerNotificationUnlessNeverAsked;
 {
     if([self shouldTryToRegister])
-        [[UAPush shared] registerForRemoteNotificationTypes:kNotificationType];
+        [[UAPush shared] registerForRemoteNotificationTypes:kPushNotificationRegisterTypes];
 }
 
 @end
