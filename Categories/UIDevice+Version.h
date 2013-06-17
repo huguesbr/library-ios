@@ -10,4 +10,7 @@
 
 @interface UIDevice (Version)
 
+@property (readonly, assign) BOOL isRunningAtLeastIos7;
+@property (readonly, assign) BOOL isRunningAtLeastIos6;
+
 @end

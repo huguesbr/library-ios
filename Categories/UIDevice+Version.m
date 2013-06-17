@@ -10,4 +10,14 @@
 
 @implementation UIDevice (Version)
 
+-(BOOL)isRunningAtLeastIos7;
+{
+    return [[[UIDevice currentDevice] systemVersion] compare:@"7.0" options:NSNumericSearch] != NSOrderedAscending;
+}
+
+-(BOOL)isRunningAtLeastIos6;
+{
+    return [[[UIDevice currentDevice] systemVersion] compare:@"6.0" options:NSNumericSearch] != NSOrderedAscending;
+}
+
 @end
