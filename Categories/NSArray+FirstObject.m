@@ -9,6 +9,7 @@
 #import "NSArray+FirstObject.h"
 
 @implementation NSArray (FirstObject)
+
 - (id)firstObject;
 {
     id firstObject;
