@@ -9,8 +9,16 @@
 #import "UIViewController+Modal.h"
 
 @implementation UIViewController (Extra)
-- (BOOL)isModal
+
+- (BOOL)isModal;
 {
     return (self == [[[self navigationController] viewControllers] objectAtIndex:0]);
 }
+
+-(void)dismissTopViewControllerAnimated:(BOOL)flag completion:(void (^)(void))completion;
+{
+    if (self.navigationController) [self.navigationController.presentingViewController dismissViewControllerAnimated:flag completion:completion];
+    else [self.presentingViewController dismissViewControllerAnimated:flag completion:completion];
+}
+
 @end

@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface UIViewController (Extra)
+
 - (BOOL)isModal;
+- (void)dismissTopViewControllerAnimated:(BOOL)flag completion:(void (^)(void))completion;
+
 @end
