@@ -13,4 +13,8 @@
 {
     return [self isEqual:[NSNull null]];
 }
+- (BOOL)isNotNull;
+{
+    return ![self isEqual:[NSNull null]];
+}
 @end
