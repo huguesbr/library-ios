@@ -27,5 +27,6 @@
 + (void)showNotification:(NSDictionary *)aps;
 + (void)registerNotification;
 + (void)registerNotificationUnlessNeverAsked;
++ (void)setAlias:(NSString *)newAlias;
 
 @end

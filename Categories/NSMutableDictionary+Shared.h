@@ -13,3 +13,5 @@
 + (NSMutableDictionary *)sharedDictionary;
 
 @end
+
+#define kSharedDictionary [NSMutableDictionary sharedDictionary]

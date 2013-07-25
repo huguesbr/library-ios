@@ -81,4 +81,10 @@
         [[UAPush shared] registerForRemoteNotificationTypes:kPushNotificationRegisterTypes];
 }
 
++ (void)setAlias:(NSString *)newAlias
+{
+    [UAPush shared].alias = newAlias;
+    [[UAPush shared] updateRegistration];
+}
+
 @end
