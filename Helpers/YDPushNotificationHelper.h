@@ -24,7 +24,7 @@
 
 + (BOOL)shouldPrompt;
 + (void)prompt;
-+ (void)showNotification:(NSDictionary *)aps;
++ (void)handleNotification:(NSDictionary *)aps;
 + (void)registerNotification;
 + (void)registerNotificationUnlessNeverAsked;
 + (void)setAlias:(NSString *)newAlias;

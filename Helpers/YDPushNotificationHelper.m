@@ -7,6 +7,7 @@
 //
 
 #import "YDPushNotificationHelper.h"
+#import "NSURL+QueryArguments.h"
 
 @implementation YDPushNotificationHelper
 
@@ -48,14 +49,34 @@
     return shouldPrompt;
 }
 
-+ (void)showNotification:(NSDictionary *)aps
++ (void)handleNotification:(NSDictionary *)aps
 {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Notification", @"Notification Helper Notification Title")
-                                                    message:aps[@"message"]
-                                                   delegate:nil
-                                          cancelButtonTitle:NSLocalizedString(@"Dismiss", @"Notification Helper Notification Dismiss")
-                                          otherButtonTitles:nil];
-    [alert show];
+    // silent notification
+    if(aps[@"s"]) return;
+    
+    void (^deeplink)() = ^{
+        [[UIApplication sharedApplication].delegate application:[UIApplication sharedApplication] openURL:[aps[@"u"] urlValue] sourceApplication:nil annotation:nil];
+    };
+    
+    if ([UIApplication sharedApplication].applicationState == UIApplicationStateInactive ) {
+        //The application received the notification from an inactive state, i.e. the user tapped the "View" button for the alert.
+        if(aps[@"u"]) deeplink();
+    }
+    
+    if([UIApplication sharedApplication].applicationState == UIApplicationStateActive ) {
+        //        //The application received a notification in the active state, so you can display an alert view or do something appropriate.
+        
+        UIAlertView *alertView = [UIAlertView alertViewWithTitle:NSLocalizedString(@"Notification", @"Notification Helper Notification Title") message:aps[@"message"]];
+        [alertView setCancelButtonWithTitle:NSLocalizedString(@"Dismiss", @"Notification Helper Notification Dismiss") handler:nil];
+        if(aps[@"u"]) {
+            NSString *buttonLabel = NSLocalizedString(@"Show", @"Notification Helper Deeplink Show");
+            if (aps[@"a"]) {
+                buttonLabel = NSLocalizedString(aps[@"a"], @"Notification Helper Deeplink Custom Label");
+            }
+            [alertView addButtonWithTitle:buttonLabel handler:deeplink];
+        }
+        [alertView show];
+    }
 }
 
 + (void)prompt;
