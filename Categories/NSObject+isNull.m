@@ -17,4 +17,10 @@
 {
     return ![self isEqual:[NSNull null]];
 }
+
+- (instancetype)safeValue;
+{
+    return [self isNull] ? nil : self;
+}
+
 @end

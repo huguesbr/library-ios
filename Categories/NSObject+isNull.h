@@ -11,4 +11,5 @@
 @interface NSObject (isNull)
 - (BOOL)isNull;
 - (BOOL)isNotNull;
+- (id)safeValue;
 @end
