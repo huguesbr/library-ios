@@ -12,11 +12,11 @@
  */
 
 #ifndef kUIFontSystemFontDefault
-#define kUIFontSystemFontDefault @"HelveticaNeue"
+#define kUIFontSystemFontDefault @"Futura"
 #endif
 
 #ifndef kUIFontSystemFontDefaultBold
-#define kUIFontSystemFontDefaultBold @"HelveticaNeue"
+#define kUIFontSystemFontDefaultBold @"Futura"
 #endif
 
 #import <UIKit/UIKit.h>
