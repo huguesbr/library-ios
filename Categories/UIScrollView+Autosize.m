@@ -18,6 +18,7 @@
         if (CGRectGetMaxX(scrollSubview.frame) > maxSize.width)
             maxSize.width = CGRectGetMaxX(scrollSubview.frame);
     }];
+    NSLog(@"update scrollview content size %@", NSStringFromCGSize(maxSize));
     [self setContentSize:maxSize];
 }
 @end
