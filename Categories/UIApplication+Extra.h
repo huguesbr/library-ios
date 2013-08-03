@@ -13,5 +13,6 @@
 @property (readonly) NSString *name;
 @property (readonly) NSString *version;
 @property (readonly) NSString *revision;
+- (void)performBlock:( void(^)() )block every:(NSInteger)delay usingKey:(NSString *)settingKey otherwise:( void(^)(NSDate *) )otherBlock;
 
 @end

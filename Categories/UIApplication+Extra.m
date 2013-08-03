@@ -25,4 +25,17 @@
     return [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
 }
 
+- (void)performBlock:( void(^)() )block every:(NSInteger)delay usingKey:(NSString *)settingKey otherwise:( void(^)(NSDate *) )otherBlock;
+{
+    NSDate *lastDate = [Settings objectForKey:settingKey];
+    NSLog(@"%@ :%@", settingKey, lastDate);
+    if([lastDate timeIntervalSinceNow] < -delay || !lastDate) {
+        [Settings setObject:[NSDate date] forKey:settingKey];
+        [Settings synchronize];
+        if(block) block();
+    } else {
+        if(otherBlock) otherBlock(lastDate);
+    }
+}
+
 @end
