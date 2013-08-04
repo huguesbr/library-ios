@@ -9,22 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "DebugMenuTableViewController.h"
 
-#ifndef kMotionShakeNotification
-#define kMotionShakeNotification @"motionShakeNotification"
-#endif
-
 @interface DebugMenuRibbonController : UINavigationController<DebugMenuDelegate>{
-
 	BOOL _ribbonIsDown;
-	
 }
-
 @property (nonatomic,retain) UIButton* ribbon;
-
--(void) addDebugIndicatorToWindow;
-
-+(DebugMenuRibbonController*) activateDebugMenu;
-
-+(void) moveRibbonToTopOfWindow;
-
++ (DebugMenuRibbonController *)sharedDebugMenu;
+- (void) showHideRibbon;
 @end

@@ -43,73 +43,32 @@
 
 @implementation DebugMenuRibbonController
 
-@synthesize ribbon;
-
-static DebugMenuRibbonController *sharedDebugMenuRibbonController = nil;		// Singleton
-
 #pragma mark -
 #pragma mark Singleton Methods
 #pragma mark -
+static DebugMenuRibbonController *_sharedDebugMenuRibbonController = nil;
 
-+ (DebugMenuRibbonController*)activateDebugMenu
++ (instancetype)sharedDebugMenu;
 {
-    @synchronized( self ){
-        if (sharedDebugMenuRibbonController == nil) {
-			DebugMenuTableViewController *tableViewController = [[DebugMenuTableViewController alloc] initWithStyle:UITableViewStylePlain];
-			sharedDebugMenuRibbonController = [[self alloc] initWithRootViewController:tableViewController];
-			sharedDebugMenuRibbonController.navigationBar.tintColor = [UIColor blackColor];
-			tableViewController.delegate = sharedDebugMenuRibbonController;
-			
-			[sharedDebugMenuRibbonController addDebugIndicatorToWindow];
-		}
-    }
-    return sharedDebugMenuRibbonController;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        DebugMenuTableViewController *tableViewController = [[DebugMenuTableViewController alloc] initWithStyle:UITableViewStylePlain];
+        _sharedDebugMenuRibbonController = [[self alloc] initWithRootViewController:tableViewController];
+        _sharedDebugMenuRibbonController.navigationBar.tintColor = [UIColor blackColor];
+        tableViewController.delegate = _sharedDebugMenuRibbonController;
+        [_sharedDebugMenuRibbonController addDebugIndicatorToWindow];
+    });
+    
+    return _sharedDebugMenuRibbonController;
 }
 
-+ (id)allocWithZone:(NSZone *)zone
-{
-    @synchronized(self) {
-        if (sharedDebugMenuRibbonController == nil) {
-            sharedDebugMenuRibbonController = [super allocWithZone:zone];
-            return sharedDebugMenuRibbonController;  // assignment and return on first allocation
-        }
-    }
-    return nil; //on subsequent allocation attempts return nil
-}
-
-- (id)copyWithZone:(NSZone *)zone
-{
-    return self;
-}
-
-//- (id)retain
-//{
-//    return self;
-//}
-//
-//- (unsigned)retainCount
-//{
-//    return UINT_MAX;  //denotes an object that cannot be released
-//}
-//
-//- (oneway void)release
-//{
-//    //do nothing
-//}
-//
-//- (id)autorelease
-//{
-//    return self;
-//}
 
 #pragma mark -
 #pragma mark Controller Methods
 #pragma mark -
 
-
-
-+(void) moveRibbonToTopOfWindow{
-	[sharedDebugMenuRibbonController.ribbon.superview bringSubviewToFront:sharedDebugMenuRibbonController.ribbon];
+- (void) moveRibbonToTopOfWindow{
+	[_sharedDebugMenuRibbonController.ribbon.superview bringSubviewToFront:_sharedDebugMenuRibbonController.ribbon];
 }
 
 -(void) addDebugIndicatorToWindow{
@@ -133,7 +92,6 @@ static DebugMenuRibbonController *sharedDebugMenuRibbonController = nil;		// Sin
 	[window addSubview: self.ribbon];
 	[window addSubview: self.view];
     
-	
 	[self hideDebugMenu];
 }
 
@@ -149,19 +107,17 @@ static DebugMenuRibbonController *sharedDebugMenuRibbonController = nil;		// Sin
 	[self hideDebugMenu];
 }
 
--(void) shakeDidHappen{
-	[self slideDownRibbon];
-}
-
 -(void) didClickRibbon{
 	[self showDebugMenu];
 }
 
 #pragma mark Utility functions
 
--(void) slideDownRibbon{
-    [DebugMenuRibbonController moveRibbonToTopOfWindow];
-	if( _ribbonIsDown ) return;
+-(void) showHideRibbon{
+    [self moveRibbonToTopOfWindow];
+	if( _ribbonIsDown ) {
+        [self slideUpRibbon];
+    }
 	
 	self.ribbon.userInteractionEnabled = YES;
 	_ribbonIsDown = YES;
@@ -235,8 +191,6 @@ static DebugMenuRibbonController *sharedDebugMenuRibbonController = nil;		// Sin
 }
 
 - (void)viewDidLoad {
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(shakeDidHappen) name:kMotionShakeNotification object:nil];
-	
     [super viewDidLoad];
 }
 

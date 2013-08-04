@@ -10,6 +10,7 @@
 #import "DebugMenuDictionaryViewerController.h"
 #import <InAppSettingsKit/IASKAppSettingsViewController.h>
 #import "asl.h"
+#import "SBBark.h"
 
 @interface DebugMenuTableViewController(Private)
 
@@ -119,7 +120,11 @@
 	switch (indexPath.row) {
 		case 0:
 		{
-            [TestFlight openFeedbackView];
+//            [TestFlight openFeedbackView];
+            [delegate didClickExit];
+//            [self dismissViewControllerAnimated:YES completion:^{
+                [[SBBark sharedBark] showBark];
+//            }];
 			break;
 		}
 			

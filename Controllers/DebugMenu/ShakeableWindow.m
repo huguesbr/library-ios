@@ -7,22 +7,27 @@
 //
 
 #import "ShakeableWindow.h"
+
 @implementation ShakeableWindow
-@synthesize shakeNotificationName;
 
 -(id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if(self){
-        self.shakeNotificationName = kMotionShakeNotification;
     }
     return self;
+}
+
+-(BOOL)canBecomeFirstResponder
+{
+    return YES;
 }
 
 -(void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event
 {
     if(motion == UIEventSubtypeMotionShake)
-        [[NSNotificationCenter defaultCenter] postNotificationName:shakeNotificationName object:event];
+        [[NSNotificationCenter defaultCenter] postNotificationName:kShakeableWindowDidShakeNotification object:event];
 
 }
+
 @end
