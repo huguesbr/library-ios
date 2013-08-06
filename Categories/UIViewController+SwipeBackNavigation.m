@@ -7,7 +7,7 @@
 //
 
 #import "UIViewController+SwipeBackNavigation.h"
-#import "NSObject+WeakSelf.h"
+#import "HBRWeakSelf.h"
 
 @implementation UIViewController (SwipeBackNavigation)
 
