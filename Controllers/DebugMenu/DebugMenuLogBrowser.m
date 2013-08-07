@@ -123,7 +123,7 @@ NSString *readLineAsNSString(FILE *file)
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
 		cell.textLabel.font = [UIFont systemFontOfSize:10.0];
-		cell.textLabel.lineBreakMode = UILineBreakModeWordWrap;
+		cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
 		cell.textLabel.numberOfLines = 0;
     }
     
@@ -142,7 +142,7 @@ NSString *readLineAsNSString(FILE *file)
 
 -(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 	NSString* message = [_logMessages objectAtIndex:indexPath.row];
-	CGSize size = [message sizeWithFont:[UIFont systemFontOfSize: 10.0] constrainedToSize:CGSizeMake(320.0, MAXFLOAT) lineBreakMode: UILineBreakModeWordWrap];
+	CGSize size = [message sizeWithFont:[UIFont systemFontOfSize: 10.0] constrainedToSize:CGSizeMake(320.0, MAXFLOAT) lineBreakMode: NSLineBreakByWordWrapping];
 	return size.height + 20;
 }
 

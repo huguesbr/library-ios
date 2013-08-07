@@ -11,5 +11,7 @@
 @interface UIImage (Color)
 
 + (UIImage *)imageWithColor:(UIColor *)color;
++ (UIImage *)imageWithSize:(CGSize)size color:(UIColor *)color;
+- (UIColor *)averageColor;
 
 @end

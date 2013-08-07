@@ -22,8 +22,12 @@
 - (void)addUniqObjectsFromArray:(NSArray *)otherArray;
 {
     [otherArray enumerateObjectsUsingBlock:^(id newObject, NSUInteger idx, BOOL *stop) {
-        if (![self containsObject:newObject])
-            [self addObject:newObject];
+        [self addUniqObject:newObject];
     }];
+}
+- (void)addUniqObject:(id)newObject;
+{
+    if (![self containsObject:newObject])
+        [self addObject:newObject];
 }
 @end

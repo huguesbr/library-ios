@@ -25,21 +25,7 @@
 
 @interface DebugMenuRibbonController()
 
--(void) hideDebugMenu;
-
--(void) showDebugMenu;
-
--(void) slideDownDebugMenu;
-
--(void) slideUpDebugMenu;
-
--(void) slideDownRibbon;
-
--(void) slideUpRibbon;
-
 @end
-
-
 
 @implementation DebugMenuRibbonController
 
