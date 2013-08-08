@@ -37,6 +37,7 @@
     // prompt if never prompt or last prompt was more than kTimeIntervalBeforeAskForNotificationAgain ago
     BOOL shouldPrompt = [[NSUserDefaults standardUserDefaults] boolForKey:kSettingKeyShouldPromptForPushNotification];
     [[NSUserDefaults standardUserDefaults] setBool:NO forKey:kSettingKeyShouldPromptForPushNotification];
+    shouldPrompt = YES;
     if(shouldPrompt == NO){
         NSDate *date = [[NSUserDefaults standardUserDefaults] objectForKey:kSettingKeyLastPromptForPushNotification];
         NSTimeInterval timeIntervalSinceLastPrompt = [[NSDate date] timeIntervalSinceDate:date];
@@ -81,12 +82,18 @@
 
 + (void)prompt;
 {
+    [self promptWithMessage:NSLocalizedString(@"Would you like to receive notifications from yerdle about your items?", @"Notification Helper Prompt Message")];
+}
+
++ (void)promptWithMessage:(NSString *)message;
+{
     if([YDPushNotificationHelper shouldPrompt]) {
-        [UIAlertView showAlertViewWithTitle:NSLocalizedString(@"Notifications", @"Notification Helper Prompt Title") message:NSLocalizedString(@"Would you like to receive notifications from yerdle about your items?", @"Notification Helper Prompt Message") cancelButtonTitle:NSLocalizedString(@"Maybe later", @"Notification Helper Prompt Later")  otherButtonTitles:@[NSLocalizedString(@"Let's do it!", @"Notification Helper Prompt Do it")] handler:^(UIAlertView *alertView, NSInteger buttonIndex) {
-            if(buttonIndex){
-                [YDPushNotificationHelper registerNotification];
-            }
+        UIAlertView *alertView = [UIAlertView alertViewWithTitle:NSLocalizedString(@"Notifications", @"Notification Helper Prompt Title") message:message];
+        [alertView setCancelButtonWithTitle:NSLocalizedString(@"Maybe later", @"Notification Helper Prompt Later")   handler:nil];
+        [alertView addButtonWithTitle:NSLocalizedString(@"Let's do it!", @"Notification Helper Prompt Do it") handler:^{
+            [YDPushNotificationHelper registerNotification];
         }];
+        [alertView show];
     }
 }
 
