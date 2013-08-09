@@ -15,5 +15,6 @@
 
 @interface NSMutableArray (Uniq)
 - (void)addUniqObjectsFromArray:(NSArray *)otherArray;
+-(void)insertUniqObject:(id)newObject atIndex:(NSUInteger)index;
 - (void)addUniqObject:(id)newObject;
 @end

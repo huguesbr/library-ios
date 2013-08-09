@@ -25,6 +25,13 @@
         [self addUniqObject:newObject];
     }];
 }
+
+-(void)insertUniqObject:(id)newObject atIndex:(NSUInteger)index;
+{
+    if (![self containsObject:newObject])
+        [self insertObject:newObject atIndex:index];
+}
+
 - (void)addUniqObject:(id)newObject;
 {
     if (![self containsObject:newObject])

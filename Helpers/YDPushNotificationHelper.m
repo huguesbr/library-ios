@@ -28,6 +28,7 @@
 + (void)setShouldTryToRegister:(BOOL)shouldTryToRegister;
 {
     [[NSUserDefaults standardUserDefaults] setBool:shouldTryToRegister forKey:kSettingKeyShouldTryToRegisterForPushNotification];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 + (BOOL)shouldPrompt;
@@ -46,6 +47,8 @@
     }
     if(shouldPrompt == YES) // remember last prompt time
         [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:kSettingKeyLastPromptForPushNotification];
+    
+    [[NSUserDefaults standardUserDefaults] synchronize];
     
     return shouldPrompt;
 }
