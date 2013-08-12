@@ -13,6 +13,7 @@
 {
     __block CGSize maxSize = CGSizeMake(0, 0);
     [[self subviews] enumerateObjectsUsingBlock:^(UIView *scrollSubview, NSUInteger idx, BOOL *stop) {
+        if (scrollSubview.isHidden) return;
         if (CGRectGetMaxY(scrollSubview.frame) > maxSize.height)
             maxSize.height = CGRectGetMaxY(scrollSubview.frame);
         if (CGRectGetMaxX(scrollSubview.frame) > maxSize.width)
