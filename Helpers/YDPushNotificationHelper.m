@@ -70,7 +70,7 @@
     if([UIApplication sharedApplication].applicationState == UIApplicationStateActive ) {
         //        //The application received a notification in the active state, so you can display an alert view or do something appropriate.
         
-        UIAlertView *alertView = [UIAlertView alertViewWithTitle:NSLocalizedString(@"Notification", @"Notification Helper Notification Title") message:aps[@"message"]];
+        UIAlertView *alertView = [UIAlertView alertViewWithTitle:NSLocalizedString(@"Notification", @"Notification Helper Notification Title") message:aps[@"alert"]];
         [alertView setCancelButtonWithTitle:NSLocalizedString(@"Dismiss", @"Notification Helper Notification Dismiss") handler:nil];
         if(aps[@"u"]) {
             NSString *buttonLabel = NSLocalizedString(@"Show", @"Notification Helper Deeplink Show");
