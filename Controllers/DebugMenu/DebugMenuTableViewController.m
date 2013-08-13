@@ -163,15 +163,14 @@
             
 		case 6:
 		{
-            UIAlertView *alertView = [UIAlertView alertViewWithTitle:@"New token" message:@"Session Token"];
-            alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
-            UITextField *tokenTextField = [alertView textFieldAtIndex:0];
-            [alertView setCancelButtonWithTitle:@"Cancel" handler:nil];
-            [alertView addButtonWithTitle:@"Authenticate" handler:^{
+            UITextField *tokenTextField;
+            UIAlertView *alertView = [UIAlertView alertViewWithTitle:@"New token" message:nil dismissButtonTitle:@"" actionButtonTitle:@"Authenticate" action:^{
                 [kCurrentSession logoutWithCompletion:^(BOOL success) {
                     kCurrentSession.token = tokenTextField.text;
                 }];
             }];
+            alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
+            tokenTextField = [alertView textFieldAtIndex:0];
             [alertView show];
 			break;
 		}

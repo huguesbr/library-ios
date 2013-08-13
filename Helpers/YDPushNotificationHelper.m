@@ -55,6 +55,8 @@
 
 + (void)handleNotification:(NSDictionary *)aps
 {
+    NSLog(@"handling notification: %@", aps);
+    
     // silent notification
     if(aps[@"s"]) return;
     
