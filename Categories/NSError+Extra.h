@@ -9,5 +9,5 @@
 #import <Foundation/Foundation.h>
 
 @interface NSError (Extra)
-
++ (NSError *)errorWithDomain:(NSString *)domain code:(NSInteger)code localizedDescription:(NSString *)description;
 @end
