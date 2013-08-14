@@ -163,14 +163,12 @@
             
 		case 6:
 		{
-            UITextField *tokenTextField;
-            UIAlertView *alertView = [UIAlertView alertViewWithTitle:@"New token" message:nil dismissButtonTitle:@"" actionButtonTitle:@"Authenticate" action:^{
+            UIAlertView *alertView = [UIAlertView alertViewWithTitle:@"New token" message:nil dismissButtonTitle:@"" actionButtonTitle:@"Authenticate" action:^(NSString *token){
                 [kCurrentSession logoutWithCompletion:^(BOOL success) {
-                    kCurrentSession.token = tokenTextField.text;
+                    kCurrentSession.token = token;
                 }];
             }];
             alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
-            tokenTextField = [alertView textFieldAtIndex:0];
             [alertView show];
 			break;
 		}

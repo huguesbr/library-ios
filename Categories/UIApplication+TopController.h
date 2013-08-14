@@ -9,7 +9,4 @@
 #import <UIKit/UIKit.h>
 
 @interface UIApplication (TopController)
-
-- (UIViewController*) topController;
-
 @end

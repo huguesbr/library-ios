@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface UIWindow (Extra)
-- (UIViewController *)topController;
+@property (readonly) UIViewController *topController;
 @end

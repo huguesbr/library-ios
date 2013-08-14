@@ -15,18 +15,30 @@
 
 @implementation UIAlertView (Alert)
 
-+ (UIAlertView *)alertViewWithTitle:(NSString *)title message:(NSString *)message dismissButtonTitle:(NSString *)dismissButtonTitle actionButtonTitle:(NSString *)actionButtonTitle action:( void(^)() )actionBlock;
++ (UIAlertView *)alertViewWithTitle:(NSString *)title message:(NSString *)message dismissButtonTitle:(NSString *)dismissButtonTitle actionButtonTitle:(NSString *)actionButtonTitle action:( void(^)(NSString *inputText) )actionBlock;
 {
     UIAlertView *alertView = [UIAlertView alertViewWithTitle:title message:message];
     if([dismissButtonTitle isEqualToString:@""]) dismissButtonTitle = kUIAlertDefaultCancelButtonTitle;
     if(dismissButtonTitle) [alertView setCancelButtonWithTitle:dismissButtonTitle handler:nil];
-    if(actionButtonTitle) [alertView addButtonWithTitle:actionButtonTitle handler:actionBlock];
+    if(actionButtonTitle) {
+        Weakify(alertView) weakAlertView = alertView;
+        [alertView addButtonWithTitle:actionButtonTitle handler:^{
+            if(actionBlock) {
+                if (weakAlertView.alertViewStyle == UIAlertViewStylePlainTextInput)
+                    actionBlock([[weakAlertView textFieldAtIndex:0] text]);
+                else
+                    actionBlock(nil);
+            }
+        }];
+    }
     return alertView;
 }
 
 + (void)showAlertViewWithTitle:(NSString *)title message:(NSString *)message dismissButtonTitle:(NSString *)dismissButtonTitle actionButtonTitle:(NSString *)actionButtonTitle action:( void(^)() )actionBlock;
 {
-    [[self alertViewWithTitle:title message:message dismissButtonTitle:dismissButtonTitle actionButtonTitle:actionButtonTitle action:actionBlock] show];
+    [[self alertViewWithTitle:title message:message dismissButtonTitle:dismissButtonTitle actionButtonTitle:actionButtonTitle action:^(NSString *input){
+        if(actionBlock) actionBlock();
+    }] show];
 }
 
 + (void)showAlertViewWithTitle:(NSString *)title message:(NSString *)message dismissButtonTitle:(NSString *)dismissButtonTitle;
