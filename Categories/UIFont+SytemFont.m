@@ -15,12 +15,16 @@
 
 + (UIFont *)boldSystemFontOfSize:(CGFloat)fontSize;
 {
-    return [UIFont fontWithName:kUIFontSystemFontDefaultBold size:fontSize];
+    UIFont *systemFont =  [UIFont fontWithName:kUIFontSystemFontDefaultBold size:fontSize];
+//    NSLog(@"systemFont: %@", systemFont);
+    return systemFont;
 }
 
 + (UIFont *)systemFontOfSize:(CGFloat)fontSize
 {
-    return [UIFont fontWithName:kUIFontSystemFontDefault size:fontSize];
+    UIFont *systemFont =  [UIFont fontWithName:kUIFontSystemFontDefault size:fontSize];
+//    NSLog(@"systemFont: %@", systemFont);
+    return systemFont;
 }
 
 #pragma clang diagnostic pop
