@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 Yerdle. All rights reserved.
 //
 
-#ifndef yerdle2_HBRDispatchHelper_h
-#define yerdle2_HBRDispatchHelper_h
+//#ifndef yerdle2_HBRDispatchHelper_h
+//#define yerdle2_HBRDispatchHelper_h
 
-#define dispatch_main(call) dispatch_async(dispatch_get_main_queue(), ^{call})
+#define dispatch_async_main(call) dispatch_async(dispatch_get_main_queue(), ^{call})
 
-#endif
+//#endif
