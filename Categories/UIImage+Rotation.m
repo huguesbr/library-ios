@@ -7,7 +7,7 @@
 //
 
 #import "UIImage+Rotation.h"
-#import "HBRGeometryHelper.h"
+#import "HBRMathHelper.h"
 
 @implementation UIImage (Rotation)
 
@@ -15,7 +15,7 @@
 {
 	// calculate the size of the rotated view's containing box for our drawing space
 	UIView *rotatedViewBox = [[UIView alloc] initWithFrame:CGRectMake(0,0,self.size.width, self.size.height)];
-	CGAffineTransform t = CGAffineTransformMakeRotation(DegreesToRadians(degrees));
+	CGAffineTransform t = CGAffineTransformMakeRotation(DEG2RAD(degrees));
 	rotatedViewBox.transform = t;
 	CGSize rotatedSize = rotatedViewBox.frame.size;
 //	[rotatedViewBox release];
@@ -28,7 +28,7 @@
 	CGContextTranslateCTM(bitmap, rotatedSize.width/2, rotatedSize.height/2);
 	
 	//   // Rotate the image context
-	CGContextRotateCTM(bitmap, DegreesToRadians(degrees));
+	CGContextRotateCTM(bitmap, DEG2RAD(degrees));
 	
 	// Now, draw the rotated/scaled image into the context
 	CGContextScaleCTM(bitmap, 1.0, -1.0);
