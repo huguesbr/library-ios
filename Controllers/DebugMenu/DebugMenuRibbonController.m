@@ -8,8 +8,6 @@
 
 #import "DebugMenuRibbonController.h"
 #import <QuartzCore/QuartzCore.h>
-#import "TFLargeGreenButton.h"
-#import "DebugMenuTableViewController.h"
 #import "HBRCGRectHelper.h"
 
 #define RIBBON_HEIGHT 60
@@ -24,7 +22,10 @@
 
 
 @interface DebugMenuRibbonController()
-
+{
+	BOOL _ribbonIsDown;
+}
+@property (nonatomic, strong) UIButton* ribbon;
 @end
 
 @implementation DebugMenuRibbonController
@@ -34,20 +35,26 @@
 #pragma mark -
 static DebugMenuRibbonController *_sharedDebugMenuRibbonController = nil;
 
-+ (instancetype)sharedDebugMenu;
++ (instancetype)initWithDelegate:(id <UITableViewDelegate, UITableViewDataSource>)delegate
 {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        DebugMenuTableViewController *tableViewController = [[DebugMenuTableViewController alloc] initWithStyle:UITableViewStylePlain];
+        UITableViewController *tableViewController = [[UITableViewController alloc] initWithStyle:UITableViewStylePlain];
         _sharedDebugMenuRibbonController = [[self alloc] initWithRootViewController:tableViewController];
-        _sharedDebugMenuRibbonController.navigationBar.tintColor = [UIColor blackColor];
-        tableViewController.delegate = _sharedDebugMenuRibbonController;
+        tableViewController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone handler:^(id sender) {
+            [_sharedDebugMenuRibbonController hideDebugMenu];
+        }];
+        tableViewController.tableView.delegate = delegate;
+        tableViewController.tableView.dataSource = delegate;
         [_sharedDebugMenuRibbonController addDebugIndicatorToWindow];
     });
-    
     return _sharedDebugMenuRibbonController;
 }
 
++ (instancetype)sharedDebugMenu;
+{
+    return _sharedDebugMenuRibbonController;
+}
 
 #pragma mark -
 #pragma mark Controller Methods
@@ -71,7 +78,9 @@ static DebugMenuRibbonController *_sharedDebugMenuRibbonController = nil;
 	[self.ribbon setImage:[UIImage imageNamed:@"ribbon"] forState:UIControlStateNormal];
 	self.ribbon.userInteractionEnabled = NO; // Off until shake guesture drops the ribbon into view
 	self.ribbon.frame = ribbonFrame;
-	[self.ribbon addTarget:self action:@selector(didClickRibbon) forControlEvents:UIControlEventTouchUpInside];
+	[self.ribbon addEventHandler:^(id sender) {
+        [self showDebugMenu];
+    } forControlEvents:UIControlEventTouchUpInside];
 	
 	self.view.frame = CGRectWithNewOriginY( self.view.frame, -applicationFrame.size.height );
 
@@ -79,22 +88,6 @@ static DebugMenuRibbonController *_sharedDebugMenuRibbonController = nil;
 	[window addSubview: self.view];
     
 	[self hideDebugMenu];
-}
-
-#pragma mark - DebugMenuDelegate
-
--(void) didClickExit{
-	[self slideUpDebugMenu];
-}
-
-#pragma mark - User Driven Actions
-
--(void) didClickClose{
-	[self hideDebugMenu];
-}
-
--(void) didClickRibbon{
-	[self showDebugMenu];
 }
 
 #pragma mark Utility functions
@@ -158,7 +151,8 @@ static DebugMenuRibbonController *_sharedDebugMenuRibbonController = nil;
 	[UIView commitAnimations];
 }
 
--(void) hideDebugMenu{
+-(void) hideDebugMenu
+{
 	self.ribbon.userInteractionEnabled = NO;
 	[self slideUpDebugMenu];
 }

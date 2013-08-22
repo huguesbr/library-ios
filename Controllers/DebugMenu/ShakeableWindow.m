@@ -8,6 +8,10 @@
 
 #import "ShakeableWindow.h"
 
+@interface ShakeableWindow()
+@property (weak) UILabel *label;
+@end
+
 @implementation ShakeableWindow
 
 -(id)initWithFrame:(CGRect)frame

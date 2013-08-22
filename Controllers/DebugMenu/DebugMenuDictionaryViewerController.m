@@ -8,14 +8,15 @@
 
 #import "DebugMenuDictionaryViewerController.h"
 
-@implementation DebugMenuDictionaryViewerController
-@synthesize object = _object;
-@synthesize values = _values;
-@synthesize keys = _keys;
-@synthesize dictionary = _dictionary;
-@synthesize detailTextView = _detailTextView;
-@synthesize hideDetailButton = _hideDetailButton;
+@interface DebugMenuDictionaryViewerController()
+@property (retain, nonatomic) NSDictionary *dictionary;
+@property (retain, nonatomic) NSArray *values;
+@property (retain, nonatomic) NSArray *keys;
+@property (retain, nonatomic) UITextView *detailTextView;
+@property (retain, nonatomic) UIButton *hideDetailButton;
+@end
 
+@implementation DebugMenuDictionaryViewerController
 
 - (void)setObject:(id)object
 {
@@ -91,7 +92,7 @@
         cell.detailTextLabel.text = @"click to explore";
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     } else{
-        cell.detailTextLabel.text = @"unknow datatype";
+        cell.detailTextLabel.text = [value description];
     }
     
     return cell;
@@ -106,25 +107,14 @@
         DebugMenuDictionaryViewerController *controller = [[DebugMenuDictionaryViewerController alloc] init];
         controller.object = value;
         [self.navigationController pushViewController:controller animated:YES];
-    } else if([value isKindOfClass:[NSString class]]){
+    } else {
         if(!_detailTextView) {
             CGRect frame = [UIScreen mainScreen].bounds;
             frame.origin.y = 20;
             frame.size.height -= 20;
             _detailTextView = [[UITextView alloc] initWithFrame:frame];
             _detailTextView.editable = NO;
-//            NSMutableArray *gesturesToKeep = [NSMutableArray array];
-//            for (id gesture in _textView.gestureRecognizers) {
-//                if([gesture isKindOfClass:[UIPanGestureRecognizer class]])
-//                    [gesturesToKeep addObject:gesture];
-//            }
-//            _textView.gestureRecognizers = gesturesToKeep;
-//            UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideDetail)];
-//            tapGesture.numberOfTapsRequired = 2;
-//            [_textView addGestureRecognizer:tapGesture]; 
-//            [tapGesture release];
             [self.view.window addSubview:_detailTextView];
-            
             _hideDetailButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
             _hideDetailButton.frame = CGRectMake(0, frame.size.height - 50, frame.size.width, 50);
             [_hideDetailButton setTitle:@"close" forState:UIControlStateNormal];
@@ -133,7 +123,7 @@
         }
         self.hideDetailButton.hidden = NO;
         self.detailTextView.hidden = NO;
-        self.detailTextView.text = value;
+        self.detailTextView.text = [value isKindOfClass:[NSString class]] ? value : [value description];
     }
     return;
 }

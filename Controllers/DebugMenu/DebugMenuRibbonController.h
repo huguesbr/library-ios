@@ -7,12 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DebugMenuTableViewController.h"
 
-@interface DebugMenuRibbonController : UINavigationController<DebugMenuDelegate>{
-	BOOL _ribbonIsDown;
-}
-@property (nonatomic,retain) UIButton* ribbon;
+@interface DebugMenuRibbonController : UINavigationController
++ (instancetype)initWithDelegate:(id <UITableViewDelegate, UITableViewDataSource>)delegate;
 + (DebugMenuRibbonController *)sharedDebugMenu;
 - (void) showHideRibbon;
+- (void) hideDebugMenu;
 @end
