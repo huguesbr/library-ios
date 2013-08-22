@@ -166,6 +166,12 @@
             UIAlertView *alertView = [UIAlertView alertViewWithTitle:@"New token" message:nil dismissButtonTitle:@"" actionButtonTitle:@"Authenticate" action:^(NSString *token){
                 [kCurrentSession logoutWithCompletion:^(BOOL success) {
                     kCurrentSession.token = token;
+                    kCurrentSession.expiresAt = [NSDate dateWithTimeIntervalSinceNow:3600];
+                    [kCurrentSession openWithSuccess:^{
+                        //
+                    } failure:^(NSError *error) {
+                        [error show];
+                    }];
                 }];
             }];
             alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
