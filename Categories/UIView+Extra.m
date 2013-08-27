@@ -11,6 +11,22 @@
 
 @implementation UIView (Extra)
 
+- (void)setShadowWithColor:(UIColor *)color offset:(CGSize)offset opacity:(CGFloat)opacity radius:(CGFloat)radius;
+{
+    [self.layer setShadowColor:color.CGColor];
+    [self.layer setShadowOffset:offset];
+    [self.layer setShadowOpacity:opacity];
+    [self.layer setShadowRadius:radius];
+}
+
+- (void)setBorderWithColor:(UIColor *)color width:(CGFloat)width radius:(CGFloat)radius clipping:(BOOL)clipping;
+{
+    self.layer.borderColor = color.CGColor;
+    self.layer.cornerRadius = radius;
+    self.layer.borderWidth = width;
+    self.layer.masksToBounds = clipping;
+}
+
 - (void)makeRoundedCornerWithRadius:(CGFloat)radius border:(CGFloat)border;
 {
     [self makeRoundedCornerWithRadius:radius border:border color:[UIColor blackColor]];

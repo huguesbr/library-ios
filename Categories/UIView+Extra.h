@@ -10,6 +10,10 @@
 
 @interface UIView (Extra)
 
+- (void)setShadowWithColor:(UIColor *)color offset:(CGSize)offset opacity:(CGFloat)opacity radius:(CGFloat)radius;
+
+- (void)setBorderWithColor:(UIColor *)color width:(CGFloat)width radius:(CGFloat)radius clipping:(BOOL)clipping;
+
 - (void)makeRoundedCornerWithRadius:(CGFloat)radius border:(CGFloat)border;
 
 - (void)makeRoundedCornerWithRadius:(CGFloat)radius border:(CGFloat)border color:(UIColor *)color;

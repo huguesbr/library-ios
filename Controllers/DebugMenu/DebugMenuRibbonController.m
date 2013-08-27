@@ -78,8 +78,9 @@ static DebugMenuRibbonController *_sharedDebugMenuRibbonController = nil;
 	[self.ribbon setImage:[UIImage imageNamed:@"ribbon"] forState:UIControlStateNormal];
 	self.ribbon.userInteractionEnabled = NO; // Off until shake guesture drops the ribbon into view
 	self.ribbon.frame = ribbonFrame;
+    __weak id weakSelf = self;
 	[self.ribbon addEventHandler:^(id sender) {
-        [self showDebugMenu];
+        [weakSelf showDebugMenu];
     } forControlEvents:UIControlEventTouchUpInside];
 	
 	self.view.frame = CGRectWithNewOriginY( self.view.frame, -applicationFrame.size.height );
