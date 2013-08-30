@@ -15,9 +15,9 @@
 
 @implementation UIAlertView (Alert)
 
-+ (UIAlertView *)alertViewWithTitle:(NSString *)title message:(NSString *)message dismissButtonTitle:(NSString *)dismissButtonTitle actionButtonTitle:(NSString *)actionButtonTitle action:( void(^)(NSString *inputText) )actionBlock;
++ (id)alertViewWithTitle:(NSString *)title message:(NSString *)message dismissButtonTitle:(NSString *)dismissButtonTitle actionButtonTitle:(NSString *)actionButtonTitle action:( void(^)(NSString *inputText) )actionBlock;
 {
-    UIAlertView *alertView = [UIAlertView alertViewWithTitle:title message:message];
+    UIAlertView *alertView = [[self class] alertViewWithTitle:title message:message];
     if([dismissButtonTitle isEqualToString:@""]) dismissButtonTitle = kUIAlertDefaultCancelButtonTitle;
     if(dismissButtonTitle) [alertView setCancelButtonWithTitle:dismissButtonTitle handler:nil];
     if(actionButtonTitle) {
