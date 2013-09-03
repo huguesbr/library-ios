@@ -8,16 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
+#ifndef kUIAlertDefaultCancelButtonTitle
+#define kUIAlertDefaultCancelButtonTitle @"Dismiss"
+#endif
+
 @interface UIAlertView (Alert)
 
 + (id)alertViewWithTitle:(NSString *)title message:(NSString *)message dismissButtonTitle:(NSString *)dismissButtonTitle actionButtonTitle:(NSString *)actionButtonTitle action:( void(^)(NSString *inputText) )actionBlock;
 
-+ (void)showAlertViewWithTitle:(NSString *)title message:(NSString *)message dismissButtonTitle:(NSString *)dismissButtonTitle actionButtonTitle:(NSString *)actionButtonTitle action:( void(^)() )actionBlock;
++ (id)showAlertViewWithTitle:(NSString *)title message:(NSString *)message dismissButtonTitle:(NSString *)dismissButtonTitle actionButtonTitle:(NSString *)actionButtonTitle action:( void(^)() )actionBlock;
 
-+ (void)showAlertViewWithTitle:(NSString *)title message:(NSString *)message dismissButtonTitle:(NSString *)dismissButtonTitle;
++ (id)showAlertViewWithTitle:(NSString *)title message:(NSString *)message dismissButtonTitle:(NSString *)dismissButtonTitle;
 
-+ (void)showAlertViewWithTitle:(NSString *)title message:(NSString *)message;
++ (id)showAlertViewWithTitle:(NSString *)title message:(NSString *)message;
 
-+ (void)showAlertViewWithTitle:(NSString *)title;
++ (id)showAlertViewWithTitle:(NSString *)title;
 
 @end

@@ -9,9 +9,6 @@
 #import "UIAlertView+Alert.h"
 #import <UIAlertView+BlocksKit.h>
 
-#ifndef kUIAlertDefaultCancelButtonTitle
-#define kUIAlertDefaultCancelButtonTitle @"Dismiss"
-#endif
 
 @implementation UIAlertView (Alert)
 
@@ -34,26 +31,28 @@
     return alertView;
 }
 
-+ (void)showAlertViewWithTitle:(NSString *)title message:(NSString *)message dismissButtonTitle:(NSString *)dismissButtonTitle actionButtonTitle:(NSString *)actionButtonTitle action:( void(^)() )actionBlock;
++ (id)showAlertViewWithTitle:(NSString *)title message:(NSString *)message dismissButtonTitle:(NSString *)dismissButtonTitle actionButtonTitle:(NSString *)actionButtonTitle action:( void(^)() )actionBlock;
 {
-    [[self alertViewWithTitle:title message:message dismissButtonTitle:dismissButtonTitle actionButtonTitle:actionButtonTitle action:^(NSString *input){
+    id alertView = [self alertViewWithTitle:title message:message dismissButtonTitle:dismissButtonTitle actionButtonTitle:actionButtonTitle action:^(NSString *input){
         if(actionBlock) actionBlock();
-    }] show];
+    }];
+    [alertView show];
+    return alertView;
 }
 
-+ (void)showAlertViewWithTitle:(NSString *)title message:(NSString *)message dismissButtonTitle:(NSString *)dismissButtonTitle;
++ (id)showAlertViewWithTitle:(NSString *)title message:(NSString *)message dismissButtonTitle:(NSString *)dismissButtonTitle;
 {
-    [self showAlertViewWithTitle:title message:message dismissButtonTitle:dismissButtonTitle actionButtonTitle:nil action:nil];
+    return [self showAlertViewWithTitle:title message:message dismissButtonTitle:dismissButtonTitle actionButtonTitle:nil action:nil];
 }
 
-+ (void)showAlertViewWithTitle:(NSString *)title message:(NSString *)message;
++ (id)showAlertViewWithTitle:(NSString *)title message:(NSString *)message;
 {
-    [self showAlertViewWithTitle:title message:message dismissButtonTitle:kUIAlertDefaultCancelButtonTitle];
+    return [self showAlertViewWithTitle:title message:message dismissButtonTitle:kUIAlertDefaultCancelButtonTitle];
 }
 
-+ (void)showAlertViewWithTitle:(NSString *)title;
++ (id)showAlertViewWithTitle:(NSString *)title;
 {
-    [self showAlertViewWithTitle:title message:nil dismissButtonTitle:kUIAlertDefaultCancelButtonTitle];
+    return [self showAlertViewWithTitle:title message:nil dismissButtonTitle:kUIAlertDefaultCancelButtonTitle];
 }
 
 @end
