@@ -7,8 +7,38 @@
 //
 
 #import "UIApplication+Extra.h"
+#import "NSObject+AssociatedObject.h"
+
+#define kUIApplicationStartTimeKey ""
 
 @implementation UIApplication (Extra)
+
+
+- (NSString *)sessionId
+{
+    static NSString *_sessionId;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _sessionId = [[NSUUID UUID] UUIDString];
+    });
+    return _sessionId;
+}
+
+-(void)setStartTime:(NSDate *)startTime
+{
+    [self setAssociatedObject:startTime forKey:kUIApplicationStartTimeKey];
+}
+
+-(NSDate *)startTime
+{
+    return [self associatedObjectforKey:kUIApplicationStartTimeKey];
+}
+
+-(NSTimeInterval)secondsInApp
+{
+    return [[NSDate date] timeIntervalSinceDate:self.startTime];
+}
+
 
 - (NSString *)name;
 {
