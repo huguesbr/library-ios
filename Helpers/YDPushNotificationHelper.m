@@ -87,7 +87,7 @@
 
 + (void)prompt;
 {
-    [self promptWithMessage:NSLocalizedString(@"Would you like to receive notifications from yerdle about your items?", @"Notification Helper Prompt Message")];
+    [self promptWithMessage:NSLocalizedString(@"Would you like us to notify you about activity on your items?", @"Notification Helper Prompt Message")];
 }
 
 + (void)promptWithMessage:(NSString *)message;
