@@ -32,6 +32,7 @@
     dispatch_once(&onceToken, ^{
         _firstAppLaunch = ![[NSUserDefaults standardUserDefaults] boolForKey:kAppAlreadyLaunchedKey];
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kAppAlreadyLaunchedKey];
+        [[NSUserDefaults standardUserDefaults] synchronize];
     });
     return _firstAppLaunch;
 }
