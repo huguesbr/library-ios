@@ -10,7 +10,7 @@
 
 @implementation CLLocationManager (Shared)
 
-+ (id)_sharedManager;
++ (CLLocationManager *)sharedManager;
 {
     static CLLocationManager *_sharedManager;
     static dispatch_once_t onceToken;
@@ -19,7 +19,5 @@
     });
     return _sharedManager;
 }
-
-
 
 @end

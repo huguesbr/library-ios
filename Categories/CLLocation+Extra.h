@@ -10,4 +10,9 @@
 
 @interface CLLocation (Extra)
 
+@property (strong) NSString *reverseLocation;
+- (void)saveAsLastLocation;
+
++ (CLLocation *)lastLocation;
+
 @end
