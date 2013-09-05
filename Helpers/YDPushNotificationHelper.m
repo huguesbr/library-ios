@@ -38,7 +38,7 @@
     // prompt if never prompt or last prompt was more than kTimeIntervalBeforeAskForNotificationAgain ago
     BOOL shouldPrompt = [[NSUserDefaults standardUserDefaults] boolForKey:kSettingKeyShouldPromptForPushNotification];
     [[NSUserDefaults standardUserDefaults] setBool:NO forKey:kSettingKeyShouldPromptForPushNotification];
-    shouldPrompt = YES;
+//    shouldPrompt = YES;
     if(shouldPrompt == NO){
         NSDate *date = [[NSUserDefaults standardUserDefaults] objectForKey:kSettingKeyLastPromptForPushNotification];
         NSTimeInterval timeIntervalSinceLastPrompt = [[NSDate date] timeIntervalSinceDate:date];

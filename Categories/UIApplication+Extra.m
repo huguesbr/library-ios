@@ -9,10 +9,11 @@
 #import "UIApplication+Extra.h"
 #import "NSObject+AssociatedObject.h"
 
-#define kUIApplicationStartTimeKey ""
+#define kUIApplicationStartTimeKey "kUIApplicationStartTimeKey"
+#define kUIApplicationLaunchOptionsKey "kUIApplicationLaunchOptionsKey"
+#define kAppAlreadyLaunchedKey @"AppAlreadyLaunchedKey"
 
 @implementation UIApplication (Extra)
-
 
 - (NSString *)sessionId
 {
@@ -24,21 +25,42 @@
     return _sessionId;
 }
 
--(void)setStartTime:(NSDate *)startTime
+- (BOOL)firstAppLaunch;
+{
+    __block BOOL _firstAppLaunch;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _firstAppLaunch = ![[NSUserDefaults standardUserDefaults] boolForKey:kAppAlreadyLaunchedKey];
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kAppAlreadyLaunchedKey];
+    });
+    return _firstAppLaunch;
+}
+
+-(void)setSessionStartTime:(NSDate *)startTime
 {
     [self setAssociatedObject:startTime forKey:kUIApplicationStartTimeKey];
 }
 
--(NSDate *)startTime
+-(NSDate *)sessionStartTime
 {
+    NSLog(@"%@", [self associatedObjectforKey:kUIApplicationStartTimeKey]);
     return [self associatedObjectforKey:kUIApplicationStartTimeKey];
 }
 
--(NSTimeInterval)secondsInApp
+-(void)setLaunchOptions:(NSDictionary *)launchOptions
 {
-    return [[NSDate date] timeIntervalSinceDate:self.startTime];
+    [self setAssociatedObject:launchOptions forKey:kUIApplicationLaunchOptionsKey];
 }
 
+-(NSDictionary *)launchOptions
+{
+    return [self associatedObjectforKey:kUIApplicationLaunchOptionsKey];
+}
+
+-(NSTimeInterval)sessionDuration
+{
+    return [[NSDate date] timeIntervalSinceDate:self.sessionStartTime];
+}
 
 - (NSString *)name;
 {
