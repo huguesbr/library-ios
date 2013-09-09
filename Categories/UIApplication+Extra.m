@@ -11,7 +11,8 @@
 
 #define kUIApplicationStartTimeKey "kUIApplicationStartTimeKey"
 #define kUIApplicationLaunchOptionsKey "kUIApplicationLaunchOptionsKey"
-#define kAppAlreadyLaunchedKey @"AppAlreadyLaunchedKey"
+#define kAppAlreadyLaunchedKey "AppAlreadyLaunchedSettingKey"
+#define kAppAlreadyLaunchedSettingKey @"AppAlreadyLaunchedSettingKey"
 
 @implementation UIApplication (Extra)
 
@@ -27,11 +28,12 @@
 
 - (BOOL)firstAppLaunch;
 {
-    __block BOOL _firstAppLaunch;
+    __block BOOL _firstAppLaunch = [[self associatedObjectforKey:kAppAlreadyLaunchedKey] boolValue];
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        _firstAppLaunch = ![[NSUserDefaults standardUserDefaults] boolForKey:kAppAlreadyLaunchedKey];
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kAppAlreadyLaunchedKey];
+        _firstAppLaunch = ![[NSUserDefaults standardUserDefaults] boolForKey:kAppAlreadyLaunchedSettingKey];
+        [self setAssociatedObject:@(_firstAppLaunch) forKey:kAppAlreadyLaunchedKey];
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kAppAlreadyLaunchedSettingKey];
         [[NSUserDefaults standardUserDefaults] synchronize];
     });
     return _firstAppLaunch;
