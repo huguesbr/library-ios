@@ -25,4 +25,14 @@
     return [self sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:key ascending:ascending]]];
 }
 
+- (NSArray *)collectUsingKey:(NSString *)key;
+{
+    return [self valueForKey:key];
+}
+
+- (NSArray *)collapseUsingKey:(NSString *)key;
+{
+    return [self valueForKey:key];
+}
+
 @end
