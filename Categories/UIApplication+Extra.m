@@ -80,6 +80,27 @@
     return [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
 }
 
+- (NSString *)release_type;
+{
+    NSString *release = @"unknown";
+#if DEBUG
+    release = @"debug";
+#endif
+#if RELEASE
+    release = @"apple-store";
+#endif
+#if STAGING
+    release = @"staging";
+#endif
+#if BETA
+    release = @"beta";
+#endif
+#if (TARGET_IPHONE_SIMULATOR)
+    release = @"simulator";
+#endif
+    return release;
+}
+
 - (void)performBlock:( void(^)() )block every:(NSInteger)delay usingKey:(NSString *)settingKey otherwise:( void(^)(NSDate *) )otherBlock;
 {
     NSDate *lastDate = [Settings objectForKey:settingKey];

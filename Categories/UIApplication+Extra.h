@@ -13,6 +13,7 @@
 @property (readonly) NSString *name;
 @property (readonly) NSString *version;
 @property (readonly) NSString *revision;
+@property (readonly) NSString *release_type;
 
 @property (readonly) BOOL firstAppLaunch;
 
