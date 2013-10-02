@@ -6,8 +6,6 @@
 //  Copyright (c) 2013 HBR. All rights reserved.
 //
 
-// hhe
-
 #import "UIViewController+isViewInitialized.h"
 
 #import "NSObject+AssociatedObject.h"
