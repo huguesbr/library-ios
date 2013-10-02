@@ -22,10 +22,14 @@
 
 - (void)startActivityIndicatorWithActivityIndicatorStyle:(UIActivityIndicatorViewStyle)style;
 {
-    UIActivityIndicatorView *spinner = [UIActivityIndicatorView activityIndicatorStartedWithActivityIndicatorStyle:style];
+    UIActivityIndicatorView *spinner = [self associatedObjectforKey:kAssociatedActivityIndicatorViewKey];
+    if(spinner == nil) {
+        spinner = [UIActivityIndicatorView activityIndicatorStartedWithActivityIndicatorStyle:style];
+        [self setAssociatedObject:spinner forKey:kAssociatedActivityIndicatorViewKey];
+    }
+    if([spinner superview] == nil)
+        [self addSubview:spinner];
     spinner.frame = self.bounds;
-    [self addSubview:spinner];
-    [self setAssociatedObject:spinner forKey:kAssociatedActivityIndicatorViewKey];
 }
 
 - (void)startActivityIndicatorAndDisableUserInteraction;
