@@ -13,6 +13,7 @@
 @property (retain, nonatomic) NSArray *values;
 @property (retain, nonatomic) NSArray *keys;
 @property (retain, nonatomic) UITextView *detailTextView;
+@property (retain, nonatomic) UITextView *titleTextView;
 @property (retain, nonatomic) UIButton *hideDetailButton;
 @end
 
@@ -38,8 +39,11 @@
     [super viewDidLoad];
 }
 
--(void)viewDidUnload
+-(void)viewDidDisappear:(BOOL)animated
 {
+    [super viewDidDisappear:animated];
+    
+    [_titleTextView removeFromSuperview];
     [_detailTextView removeFromSuperview];
     [_hideDetailButton removeFromSuperview];
 }
@@ -109,21 +113,32 @@
         [self.navigationController pushViewController:controller animated:YES];
     } else {
         if(!_detailTextView) {
-            CGRect frame = [UIScreen mainScreen].bounds;
-            frame.origin.y = 20;
-            frame.size.height -= 20;
+            CGRect frame = self.view.bounds;
+            frame.origin.y = 70;
+            frame.size.height -= 70;
             _detailTextView = [[UITextView alloc] initWithFrame:frame];
             _detailTextView.editable = NO;
             [self.view.window addSubview:_detailTextView];
+            
+            frame = self.view.bounds;
+            frame.origin.y = 50;
+            frame.size.height = 20;
+            _titleTextView = [[UITextView alloc] initWithFrame:frame];
+            _titleTextView.editable = NO;
+            [self.view.window addSubview:_titleTextView];
+            
             _hideDetailButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+            frame = self.view.bounds;
             _hideDetailButton.frame = CGRectMake(0, frame.size.height - 50, frame.size.width, 50);
             [_hideDetailButton setTitle:@"close" forState:UIControlStateNormal];
             [_hideDetailButton addTarget:self action:@selector(hideDetail) forControlEvents:UIControlEventTouchUpInside];
             [self.view.window addSubview:_hideDetailButton];
         }
+        
         self.hideDetailButton.hidden = NO;
         self.detailTextView.hidden = NO;
         self.detailTextView.text = [value isKindOfClass:[NSString class]] ? value : [value description];
+        self.titleTextView.text = [self.keys objectAtIndex:indexPath.row];
     }
     return;
 }
@@ -131,6 +146,7 @@
 - (void)hideDetail
 {
     self.detailTextView.hidden = YES;
+    self.titleTextView.hidden = YES;
     self.hideDetailButton.hidden = YES;
 }
     
