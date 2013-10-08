@@ -46,7 +46,6 @@
 
 -(NSDate *)sessionStartTime
 {
-    NSLog(@"%@", [self associatedObjectforKey:kUIApplicationStartTimeKey]);
     return [self associatedObjectforKey:kUIApplicationStartTimeKey];
 }
 
@@ -104,7 +103,7 @@
 - (void)performBlock:( void(^)() )block every:(NSInteger)delay usingKey:(NSString *)settingKey otherwise:( void(^)(NSDate *) )otherBlock;
 {
     NSDate *lastDate = [Settings objectForKey:settingKey];
-    NSLog(@"%@ :%@", settingKey, lastDate);
+    NSLog(@"Last executed %@ :%@", settingKey, lastDate);
     if([lastDate timeIntervalSinceNow] < -delay || !lastDate) {
         [Settings setObject:[NSDate date] forKey:settingKey];
         [Settings synchronize];
