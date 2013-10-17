@@ -22,7 +22,12 @@
 
 + (BOOL)shouldTryToRegister;
 {
-    return [[NSUserDefaults standardUserDefaults] boolForKey:kSettingKeyShouldTryToRegisterForPushNotification];
+    BOOL shouldTryToRegister = [[NSUserDefaults standardUserDefaults] boolForKey:kSettingKeyShouldTryToRegisterForPushNotification];
+    if([[UIApplication sharedApplication] enabledRemoteNotificationTypes] != UIRemoteNotificationTypeNone) {
+        shouldTryToRegister = YES;
+        [self setShouldTryToRegister:YES];
+    }
+    return shouldTryToRegister;
 }
 
 + (void)setShouldTryToRegister:(BOOL)shouldTryToRegister;
