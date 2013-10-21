@@ -61,6 +61,10 @@ static DebugMenuRibbonController *_sharedDebugMenuRibbonController = nil;
 #pragma mark -
 
 - (void) moveRibbonToTopOfWindow{
+    if(![self.view superview]) {
+        [self addDebugIndicatorToWindow];
+    }
+    
 	[_sharedDebugMenuRibbonController.ribbon.superview bringSubviewToFront:_sharedDebugMenuRibbonController.ribbon];
 }
 
