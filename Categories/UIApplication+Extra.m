@@ -113,4 +113,13 @@
     }
 }
 
+- (void)performBlockOnce:( void(^)() )block usingKey:(NSString *)settingKey;
+{
+    if([Settings boolForKey:settingKey] == NO) {
+        [Settings setBool:YES forKey:settingKey];
+        [Settings synchronize];
+        if(block) block();
+    }
+}
+
 @end

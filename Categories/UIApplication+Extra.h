@@ -24,5 +24,6 @@
 @property (readonly) NSString *sessionId;
 
 - (void)performBlock:( void(^)() )block every:(NSInteger)delay usingKey:(NSString *)settingKey otherwise:( void(^)(NSDate *) )otherBlock;
+- (void)performBlockOnce:( void(^)() )block usingKey:(NSString *)settingKey;
 
 @end
