@@ -12,6 +12,8 @@
 
 @implementation NSError (Alert)
 
+static BOOL _isShowingError;
+
 - (void)show
 {
     [self showWithTitle:@"Error"];
@@ -19,9 +21,13 @@
 
 - (void)showWithTitle:(NSString *)title
 {
+    if(_isShowingError) return;
+    _isShowingError = YES;
     NSLog(@"description: %@", self.description);
     NSLog(@"localized: %@", self.localizedDescription);
-    [UIAlertView showAlertViewWithTitle:title message:self.localizedDescription];
+    [UIAlertView showAlertViewWithTitle:title message:self.localizedDescription cancelButtonTitle:@"" otherButtonTitles:nil handler:^(UIAlertView *alertView, NSInteger buttonIndex) {
+        _isShowingError = NO;
+    }];
 }
 
 @end
