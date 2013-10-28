@@ -15,14 +15,17 @@
 @property (readonly) NSString *revision;
 @property (readonly) NSString *release_type;
 
-@property (readonly) BOOL firstAppLaunch;
+@property (assign) BOOL firstAppLaunch;
+@property (readonly) NSDate *installDate;
+@property (readonly) NSTimeInterval secondsSinceInstall;
+@property (readonly) NSDate *lastUpdateDate;
+@property (readonly) NSTimeInterval secondsSinceLastUpdate;
 
 @property (strong, nonatomic) NSDictionary *launchOptions;
 
 @property (strong, nonatomic) NSDate *sessionStartTime;
 @property (readonly) NSTimeInterval sessionDuration;
 @property (readonly) NSString *sessionId;
-
 - (void)performBlock:( void(^)() )block every:(NSInteger)delay usingKey:(NSString *)settingKey otherwise:( void(^)(NSDate *) )otherBlock;
 - (void)performBlockOnce:( void(^)() )block usingKey:(NSString *)settingKey;
 

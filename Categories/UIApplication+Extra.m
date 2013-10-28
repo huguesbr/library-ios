@@ -33,11 +33,48 @@
     dispatch_once(&onceToken, ^{
         _firstAppLaunch = ![[NSUserDefaults standardUserDefaults] boolForKey:kAppAlreadyLaunchedSettingKey];
         [self setAssociatedObject:@(_firstAppLaunch) forKey:kAppAlreadyLaunchedKey];
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kAppAlreadyLaunchedSettingKey];
-        [[NSUserDefaults standardUserDefaults] synchronize];
     });
     return _firstAppLaunch;
 }
+
+- (void)setFirstAppLaunch:(BOOL)firstAppLaunch;
+{
+    [[NSUserDefaults standardUserDefaults] setBool:firstAppLaunch forKey:kAppAlreadyLaunchedSettingKey];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (NSDate *)installDate;
+{
+    static NSDate *_installDate;
+    if(!_installDate) {
+        NSURL* pathToDocumentsFolder = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+        _installDate = [[[NSFileManager defaultManager] attributesOfItemAtPath:pathToDocumentsFolder.path error:nil] objectForKey:NSFileCreationDate];
+    }
+    return _installDate;
+}
+
+- (NSTimeInterval)secondsSinceInstall;
+{
+    return [[NSDate date] timeIntervalSinceDate:self.installDate];
+}
+
+- (NSDate *)lastUpdateDate;
+{
+    static NSDate *_lastUpdateDate;
+    if(!_lastUpdateDate) {
+        NSString* pathToInfoPlist = [[NSBundle mainBundle] pathForResource:@"Info" ofType:@"plist"];
+        NSString* pathToAppBundle = [pathToInfoPlist stringByDeletingLastPathComponent];
+        _lastUpdateDate  = [[[NSFileManager defaultManager] attributesOfItemAtPath:pathToAppBundle error:nil] objectForKey:NSFileModificationDate];
+    }
+    return _lastUpdateDate;
+}
+
+- (NSTimeInterval)secondsSinceLastUpdate;
+{
+    return [[NSDate date] timeIntervalSinceDate:self.lastUpdateDate];
+}
+
+
 
 -(void)setSessionStartTime:(NSDate *)startTime
 {
