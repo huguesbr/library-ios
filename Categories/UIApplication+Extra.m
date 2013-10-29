@@ -55,7 +55,7 @@
 
 - (NSTimeInterval)secondsSinceInstall;
 {
-    return [[NSDate date] timeIntervalSinceDate:self.installDate];
+    return floor([[NSDate date] timeIntervalSinceDate:self.installDate]);
 }
 
 - (NSDate *)lastUpdateDate;
@@ -71,7 +71,7 @@
 
 - (NSTimeInterval)secondsSinceLastUpdate;
 {
-    return [[NSDate date] timeIntervalSinceDate:self.lastUpdateDate];
+    return floor([[NSDate date] timeIntervalSinceDate:self.lastUpdateDate]);
 }
 
 
