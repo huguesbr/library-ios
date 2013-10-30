@@ -37,9 +37,9 @@
     return _firstAppLaunch;
 }
 
-- (void)setFirstAppLaunch:(BOOL)firstAppLaunch;
+- (void)setFirstAppLaunch:(BOOL)firstAppLaunch
 {
-    [[NSUserDefaults standardUserDefaults] setBool:firstAppLaunch forKey:kAppAlreadyLaunchedSettingKey];
+    [[NSUserDefaults standardUserDefaults] setBool:!firstAppLaunch forKey:kAppAlreadyLaunchedSettingKey];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
