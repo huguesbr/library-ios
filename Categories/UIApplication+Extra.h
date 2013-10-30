@@ -14,6 +14,7 @@
 @property (readonly) NSString *version;
 @property (readonly) NSString *revision;
 @property (readonly) NSString *release_type;
+@property (readonly) BOOL isBeta;
 
 @property (readonly) BOOL firstAppLaunch;
 @property (readonly) NSDate *installDate;

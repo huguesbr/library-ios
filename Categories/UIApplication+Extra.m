@@ -133,6 +133,11 @@
     return release;
 }
 
+- (BOOL)isBeta;
+{
+    return [self.release_type isEqualToString:@"beta"];
+}
+
 - (void)performBlock:( void(^)() )block every:(NSInteger)delay usingKey:(NSString *)settingKey otherwise:( void(^)(NSDate *) )otherBlock;
 {
     NSDate *lastDate = [Settings objectForKey:settingKey];
