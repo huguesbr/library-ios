@@ -32,15 +32,11 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         _firstAppLaunch = ![[NSUserDefaults standardUserDefaults] boolForKey:kAppAlreadyLaunchedSettingKey];
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kAppAlreadyLaunchedSettingKey];
+        [[NSUserDefaults standardUserDefaults] synchronize];
         [self setAssociatedObject:@(_firstAppLaunch) forKey:kAppAlreadyLaunchedKey];
     });
     return _firstAppLaunch;
-}
-
-- (void)setFirstAppLaunch:(BOOL)firstAppLaunch
-{
-    [[NSUserDefaults standardUserDefaults] setBool:!firstAppLaunch forKey:kAppAlreadyLaunchedSettingKey];
-    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 - (NSDate *)installDate;

@@ -15,7 +15,7 @@
 @property (readonly) NSString *revision;
 @property (readonly) NSString *release_type;
 
-@property (assign) BOOL firstAppLaunch;
+@property (readonly) BOOL firstAppLaunch;
 @property (readonly) NSDate *installDate;
 @property (readonly) NSTimeInterval secondsSinceInstall;
 @property (readonly) NSDate *lastUpdateDate;
