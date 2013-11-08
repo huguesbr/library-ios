@@ -151,6 +151,21 @@
     }
 }
 
+- (void)performBlock:( void(^)() )block everyXTime:(NSInteger)time usingKey:(NSString *)settingKey otherwise:( void(^)(NSInteger) )otherBlock;
+{
+    NSInteger nbTimeAlready = [Settings integerForKey:settingKey];
+    NSLog(@"Number of time asked %@ :%d", settingKey, nbTimeAlready);
+    if(nbTimeAlready == 0) {
+        if(block) block();
+    } else {
+        if(otherBlock) otherBlock(nbTimeAlready);
+    }
+    nbTimeAlready++;
+    if(nbTimeAlready > time) nbTimeAlready = 0;
+    [Settings setInteger:nbTimeAlready forKey:settingKey];
+    [Settings synchronize];
+}
+
 - (void)performBlockOnce:( void(^)() )block usingKey:(NSString *)settingKey;
 {
     if([Settings boolForKey:settingKey] == NO) {

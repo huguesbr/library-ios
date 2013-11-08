@@ -27,7 +27,11 @@
 @property (strong, nonatomic) NSDate *sessionStartTime;
 @property (readonly) NSTimeInterval sessionDuration;
 @property (readonly) NSString *sessionId;
+
 - (void)performBlock:( void(^)() )block every:(NSInteger)delay usingKey:(NSString *)settingKey otherwise:( void(^)(NSDate *) )otherBlock;
+
+- (void)performBlock:( void(^)() )block everyXTime:(NSInteger)time usingKey:(NSString *)settingKey otherwise:( void(^)(NSInteger) )otherBlock;
+
 - (void)performBlockOnce:( void(^)() )block usingKey:(NSString *)settingKey;
 
 @end
