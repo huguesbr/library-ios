@@ -14,6 +14,20 @@
 
 @implementation NSObject (Swizzle)
 
++ (void)swizzleInstanceSelector:(SEL)firstSelector toSelector:(SEL)secondSelector;
+{
+    Method swizzleMethod = class_getInstanceMethod(self, firstSelector);
+    Method method = class_getInstanceMethod(self, secondSelector);
+    method_exchangeImplementations(method, swizzleMethod);
+}
+
++ (void)swizzleClassSelector:(SEL)firstSelector toSelector:(SEL)secondSelector;
+{
+    Method swizzleMethod = class_getClassMethod(self, firstSelector);
+    Method method = class_getClassMethod(self, secondSelector);
+    method_exchangeImplementations(method, swizzleMethod);
+}
+
 - (void)swizzle:(Class)class methodName:(NSString*)methodName;
 {
     SEL originalMethod = NSSelectorFromString(methodName);

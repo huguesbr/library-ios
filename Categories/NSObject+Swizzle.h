@@ -10,6 +10,9 @@
 
 @interface NSObject (Swizzle)
 
++ (void)swizzleInstanceSelector:(SEL)firstSelector toSelector:(SEL)secondSelector;
++ (void)swizzleClassSelector:(SEL)firstSelector toSelector:(SEL)secondSelector;
+
 - (void)swizzle:(Class)class methodName:(NSString*)methodName;
 - (void)swizzle:(Class)class from:(SEL)original to:(SEL)new;
 
