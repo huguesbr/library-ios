@@ -71,7 +71,7 @@
     
     if ([UIApplication sharedApplication].applicationState == UIApplicationStateInactive ) {
         //The application received the notification from an inactive state, i.e. the user tapped the "View" button for the alert.
-        if(aps[@"u"]) deeplink();
+        if([aps[@"u"] safeValue]) deeplink();
     }
     
     if([UIApplication sharedApplication].applicationState == UIApplicationStateActive ) {
@@ -79,7 +79,7 @@
         
         UIAlertView *alertView = [UIAlertView alertViewWithTitle:NSLocalizedString(@"Notification", @"Notification Helper Notification Title") message:aps[@"alert"]];
         [alertView setCancelButtonWithTitle:NSLocalizedString(@"Dismiss", @"Notification Helper Notification Dismiss") handler:nil];
-        if(aps[@"u"]) {
+        if([aps[@"u"] safeValue]) {
             NSString *buttonLabel = NSLocalizedString(@"Show", @"Notification Helper Deeplink Show");
             if (aps[@"a"]) {
                 buttonLabel = NSLocalizedString(aps[@"a"], @"Notification Helper Deeplink Custom Label");
