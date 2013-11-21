@@ -39,7 +39,7 @@
 
 - (void)makeRoundedCornerWithRadius:(CGFloat)radius border:(CGFloat)border color:(UIColor *)color clipBound:(BOOL)clip;
 {
-    self.layer.borderColor = color.CGColor;
+    if(color) self.layer.borderColor = color.CGColor;
     self.layer.cornerRadius = radius;
     self.layer.borderWidth = border;
     self.layer.masksToBounds = clip;
