@@ -58,7 +58,7 @@
         }
     }
     
-    UIGraphicsBeginImageContext(targetSize); // this will crop
+    UIGraphicsBeginImageContextWithOptions(targetSize, YES, [UIScreen mainScreen].scale);
     
     CGRect thumbnailRect = CGRectZero;
     thumbnailRect.origin = thumbnailPoint;
