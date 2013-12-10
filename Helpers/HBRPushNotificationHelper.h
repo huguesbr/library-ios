@@ -20,7 +20,7 @@
 #define kPushNotificationRegisterTypes  (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)
 #endif
 
-@interface YDPushNotificationHelper : NSObject
+@interface HBRPushNotificationHelper : NSObject
 
 + (BOOL)shouldPrompt;
 + (void)prompt;

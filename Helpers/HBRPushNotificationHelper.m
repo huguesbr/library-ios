@@ -6,10 +6,10 @@
 //  Copyright (c) 2013 Comcast Silicon Valley. All rights reserved.
 //
 
-#import "YDPushNotificationHelper.h"
+#import "HBRPushNotificationHelper.h"
 #import "NSURL+QueryArguments.h"
 
-@implementation YDPushNotificationHelper
+@implementation HBRPushNotificationHelper
 
 + (void)init
 {
@@ -97,11 +97,11 @@
 
 + (void)promptWithMessage:(NSString *)message;
 {
-    if([YDPushNotificationHelper shouldPrompt]) {
+    if([HBRPushNotificationHelper shouldPrompt]) {
         UIAlertView *alertView = [UIAlertView alertViewWithTitle:NSLocalizedString(@"Notifications", @"Notification Helper Prompt Title") message:message];
         [alertView setCancelButtonWithTitle:NSLocalizedString(@"Maybe later", @"Notification Helper Prompt Later")   handler:nil];
         [alertView addButtonWithTitle:NSLocalizedString(@"Let's do it!", @"Notification Helper Prompt Do it") handler:^{
-            [YDPushNotificationHelper registerNotification];
+            [HBRPushNotificationHelper registerNotification];
         }];
         [alertView show];
     }
