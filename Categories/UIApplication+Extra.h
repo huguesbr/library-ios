@@ -22,6 +22,9 @@
 @property (readonly) NSDate *lastUpdateDate;
 @property (readonly) NSTimeInterval secondsSinceLastUpdate;
 
+@property (readonly) NSArray *enabledRemoteNotificationTypesString;
+@property (readonly) NSArray *locationServicesStatusString;
+
 @property (strong, nonatomic) NSDictionary *launchOptions;
 
 @property (strong, nonatomic) NSDate *sessionStartTime;

@@ -97,14 +97,18 @@
 
 + (void)promptWithMessage:(NSString *)message;
 {
-    if([HBRPushNotificationHelper shouldPrompt]) {
-        UIAlertView *alertView = [UIAlertView alertViewWithTitle:NSLocalizedString(@"Notifications", @"Notification Helper Prompt Title") message:message];
-        [alertView setCancelButtonWithTitle:NSLocalizedString(@"Maybe later", @"Notification Helper Prompt Later")   handler:nil];
-        [alertView addButtonWithTitle:NSLocalizedString(@"Let's do it!", @"Notification Helper Prompt Do it") handler:^{
-            [HBRPushNotificationHelper registerNotification];
-        }];
-        [alertView show];
-    }
+    if([HBRPushNotificationHelper shouldPrompt])
+        [self doPromptWithMessage:message];
+}
+
++ (void)doPromptWithMessage:(NSString *)message;
+{
+    UIAlertView *alertView = [UIAlertView alertViewWithTitle:NSLocalizedString(@"Notifications", @"Notification Helper Prompt Title") message:message];
+    [alertView setCancelButtonWithTitle:NSLocalizedString(@"Maybe later", @"Notification Helper Prompt Later")   handler:nil];
+    [alertView addButtonWithTitle:NSLocalizedString(@"Let's do it!", @"Notification Helper Prompt Do it") handler:^{
+        [HBRPushNotificationHelper registerNotification];
+    }];
+    [alertView show];
 }
 
 + (void)registerNotification;

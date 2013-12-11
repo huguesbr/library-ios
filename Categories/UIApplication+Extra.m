@@ -175,4 +175,29 @@
     }
 }
 
+- (NSArray*)enabledRemoteNotificationTypesString;
+{
+    NSMutableArray* enabledTypesArray = [NSMutableArray array];
+    UIRemoteNotificationType enabledTypes = [[UIApplication sharedApplication] enabledRemoteNotificationTypes];
+    if (enabledTypes & UIRemoteNotificationTypeNone)
+        [enabledTypesArray addObject:@"UIRemoteNotificationTypeNone"];
+    if (enabledTypes & UIRemoteNotificationTypeBadge)
+        [enabledTypesArray addObject:@"UIRemoteNotificationTypeBadge"];
+    if (enabledTypes & UIRemoteNotificationTypeSound)
+        [enabledTypesArray addObject:@"UIRemoteNotificationTypeSound"];
+    if (enabledTypes & UIRemoteNotificationTypeAlert)
+        [enabledTypesArray addObject:@"UIRemoteNotificationTypeAlert"];
+    if (enabledTypes & UIRemoteNotificationTypeNewsstandContentAvailability)
+        [enabledTypesArray addObject:@"UIRemoteNotificationTypeNewsstandContentAvailability"];
+    return enabledTypesArray;
+}
+
+
+
+- (NSString *)locationServicesStatusString;
+{
+    NSDictionary *CLLocationServicesStatuses = @{@(kCLAuthorizationStatusNotDetermined): @"not determined", @(kCLAuthorizationStatusRestricted): @"restricted", @(kCLAuthorizationStatusDenied): @"denied", @(kCLAuthorizationStatusAuthorized): @"authorized"};
+    return CLLocationServicesStatuses[@([CLLocationManager authorizationStatus])];
+}
+
 @end

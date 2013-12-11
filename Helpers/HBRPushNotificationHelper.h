@@ -25,6 +25,7 @@
 + (BOOL)shouldPrompt;
 + (void)prompt;
 + (void)promptWithMessage:(NSString *)message;
++ (void)doPromptWithMessage:(NSString *)message;
 + (void)handleNotification:(NSDictionary *)aps;
 + (void)registerNotification;
 + (void)registerNotificationUnlessNeverAsked;
