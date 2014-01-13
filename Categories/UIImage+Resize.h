@@ -1,18 +1,14 @@
-// UIImage+Resize.h
-// Created by Trevor Harmon on 8/5/09.
-// Free for personal or commercial use, with or without modification.
-// No warranty is expressed or implied.
+//
+//  UIImage+Resize.h
+//  yerdle
+//
+//  Created by Hugues Bernet-Rollande on 8/20/13.
+//  Copyright (c) 2013 Yerdle. All rights reserved.
+//
 
-// Extends the UIImage class to support resizing/cropping
+#import <UIKit/UIKit.h>
+
 @interface UIImage (Resize)
-- (UIImage *)croppedImage:(CGRect)bounds;
-- (UIImage *)thumbnailImage:(NSInteger)thumbnailSize
-          transparentBorder:(NSUInteger)borderSize
-               cornerRadius:(NSUInteger)cornerRadius
-       interpolationQuality:(CGInterpolationQuality)quality;
-- (UIImage *)resizedImage:(CGSize)newSize
-     interpolationQuality:(CGInterpolationQuality)quality;
-- (UIImage *)resizedImageWithContentMode:(UIViewContentMode)contentMode
-                                  bounds:(CGSize)bounds
-                    interpolationQuality:(CGInterpolationQuality)quality;
+
+- (UIImage*)imageByScalingAndCroppingForSize:(CGSize)targetSize;
 @end
