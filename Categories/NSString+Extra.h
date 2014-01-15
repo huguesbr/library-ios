@@ -12,4 +12,6 @@
 
 - (BOOL)contains:(NSString *)aString;
 - (NSString*)stringByPrependingString:(NSString*)aString;
+- (NSString *)stringByStrippingHTML;
+
 @end

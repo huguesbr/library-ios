@@ -22,4 +22,13 @@
     return [aString stringByAppendingString:self];
 }
 
+- (NSString *)stringByStrippingHTML;
+{
+    NSRange r;
+    NSString *s = [NSString stringWithString:self];
+    while ((r = [s rangeOfString:@"<[^>]+>" options:NSRegularExpressionSearch]).location != NSNotFound)
+        s = [s stringByReplacingCharactersInRange:r withString:@""];
+    return s;
+}
+
 @end
