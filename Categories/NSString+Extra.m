@@ -31,4 +31,14 @@
     return s;
 }
 
+- (NSString *)stringByReplacingOccurrencesOfStrings:(NSArray *)targets withStrings:(NSArray *)replacements;
+{
+    NSMutableString *newString = [self mutableCopy];
+    [targets enumerateObjectsUsingBlock:^(NSString *target, NSUInteger idx, BOOL *stop) {
+        NSString *replacement = replacements[idx];
+        [newString replaceOccurrencesOfString:target withString:replacement options:0 range:NSMakeRange(0, newString.length)];
+    }];
+    return [NSString stringWithString:newString];
+}
+
 @end

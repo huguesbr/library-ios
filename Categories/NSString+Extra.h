@@ -13,5 +13,6 @@
 - (BOOL)contains:(NSString *)aString;
 - (NSString*)stringByPrependingString:(NSString*)aString;
 - (NSString *)stringByStrippingHTML;
+- (NSString *)stringByReplacingOccurrencesOfStrings:(NSArray *)targets withStrings:(NSArray *)replacements;
 
 @end
