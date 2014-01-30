@@ -24,8 +24,17 @@
     if([object isKindOfClass:[NSArray class]])
         self.values = object;
     else if([object isKindOfClass:[NSDictionary class]]){
-        self.values = [object allValues];
-        self.keys = [object allKeys];
+        if(self.sortedByKey) {
+            self.keys = [[object allKeys] sortedArrayUsingSelector:@selector(compare:)];
+            NSMutableArray *values = [@[] mutableCopy];
+            [self.keys enumerateObjectsUsingBlock:^(NSString *key, NSUInteger idx, BOOL *stop) {
+                [values addObject:object[key]];
+            }];
+            self.values = values;
+        } else {
+            self.values = [object allValues];
+            self.keys = [object allKeys];
+        }
     }
 }
 
@@ -92,7 +101,7 @@
     }
     else if ([value isKindOfClass:[NSString class]]){
         cell.detailTextLabel.text = (NSString *)value;
-    } else if([value isKindOfClass:[NSDictionary class]]){
+    } else if([value isKindOfClass:[NSDictionary class]] || [value isKindOfClass:[NSArray class]]){
         cell.detailTextLabel.text = @"click to explore";
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     } else{

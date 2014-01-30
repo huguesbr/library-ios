@@ -73,7 +73,7 @@ static DebugMenuRibbonController *_sharedDebugMenuRibbonController = nil;
 	NSUInteger statusBarHeight = [UIApplication sharedApplication].statusBarFrame.size.height;
 	
 	CGRect applicationFrame = [UIScreen mainScreen].applicationFrame;
-	CGRect ribbonFrame = CGRectMake( applicationFrame.size.width - RIBBON_WIDTH - RIBBON_RIGHT_MARGIN, 
+	CGRect ribbonFrame = CGRectMake( (applicationFrame.size.width / 2) - ( RIBBON_WIDTH / 2 ),
 									RIBBON_PEAK_HEIGHT - RIBBON_HEIGHT + (int)statusBarHeight, 
 									RIBBON_WIDTH, 
 									RIBBON_HEIGHT );

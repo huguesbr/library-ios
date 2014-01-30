@@ -10,4 +10,5 @@
 
 @interface DebugMenuDictionaryViewerController : UITableViewController
 @property (assign) id object;
+@property (assign) BOOL sortedByKey;
 @end
