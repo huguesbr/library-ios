@@ -20,6 +20,8 @@
 
 - (void)makeRoundedCornerWithRadius:(CGFloat)radius border:(CGFloat)border color:(UIColor *)color clipBound:(BOOL)clip;
 
+- (void)makeRoundedCornerWithRadius:(CGFloat)radius border:(CGFloat)border color:(UIColor *)color clipBound:(BOOL)clip shouldRasterize:(BOOL)shouldRasterize;
+
 - (void)setRasterizationScale:(CGFloat)rasterizationScale;
 
 - (BOOL)isAnimating;
