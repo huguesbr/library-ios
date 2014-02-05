@@ -22,6 +22,7 @@
 @property (readonly) NSDate *lastUpdateDate;
 @property (readonly) NSTimeInterval secondsSinceLastUpdate;
 
+@property (readonly) BOOL remoteNotificationEnable;
 @property (readonly) NSArray *enabledRemoteNotificationTypesString;
 @property (readonly) NSArray *locationServicesStatusString;
 

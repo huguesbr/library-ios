@@ -192,7 +192,10 @@
     return enabledTypesArray;
 }
 
-
+- (BOOL)remoteNotificationEnable;
+{
+    return [[UIApplication sharedApplication] enabledRemoteNotificationTypes] != UIRemoteNotificationTypeNone;
+}
 
 - (NSString *)locationServicesStatusString;
 {

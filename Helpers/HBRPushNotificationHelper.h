@@ -30,5 +30,6 @@
 + (void)registerNotification;
 + (void)registerNotificationUnlessNeverAsked;
 + (void)setAlias:(NSString *)newAlias;
++ (BOOL)shouldTryToRegister;
 
 @end
