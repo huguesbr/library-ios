@@ -21,11 +21,23 @@ static BOOL _isShowingError;
 
 - (void)showWithTitle:(NSString *)title
 {
+    [self showWithTitle:title actionTitle:nil handler:nil];
+}
+
+- (void)showWithTitle:(NSString *)title actionTitle:(NSString *)actionTitle handler:( void(^)() )handler;
+{
+    [self showWithTitle:title dismiss:@"" actionTitle:actionTitle handler:handler];
+}
+
+- (void)showWithTitle:(NSString *)title dismiss:(NSString *)dismissTitle actionTitle:(NSString *)actionTitle handler:( void(^)() )handler;
+{
     if(_isShowingError) return;
     _isShowingError = YES;
     NSLog(@"description: %@", self.description);
     NSLog(@"localized: %@", self.localizedDescription);
-    [UIAlertView showAlertViewWithTitle:title message:self.localizedDescription cancelButtonTitle:@"" otherButtonTitles:nil handler:^(UIAlertView *alertView, NSInteger buttonIndex) {
+    NSArray *buttons = actionTitle ? @[actionTitle] : nil;
+    [UIAlertView showAlertViewWithTitle:title message:self.localizedDescription cancelButtonTitle:dismissTitle otherButtonTitles:buttons handler:^(UIAlertView *alertView, NSInteger buttonIndex) {
+        if (buttonIndex && handler) handler();
         _isShowingError = NO;
     }];
 }
