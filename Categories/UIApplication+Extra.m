@@ -115,16 +115,16 @@
 - (NSString *)release_type;
 {
     NSString *release = @"unknown";
-#if DEBUG
+#ifdef DEBUG
     release = @"debug";
 #endif
-#if RELEASE
+#ifdef RELEASE
     release = @"apple-store";
 #endif
-#if STAGING
+#ifdef STAGING
     release = @"staging";
 #endif
-#if BETA
+#ifdef BETA
     release = @"beta";
 #endif
 #if (TARGET_IPHONE_SIMULATOR)
