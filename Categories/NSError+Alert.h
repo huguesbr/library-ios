@@ -16,7 +16,7 @@
 
 - (void)show;
 - (void)showWithTitle:(NSString *)title;
-- (void)showWithTitle:(NSString *)title actionTitle:(NSString *)actionTitle handler:( void(^)() )handler;
-- (void)showWithTitle:(NSString *)title dismiss:(NSString *)dismissTitle actionTitle:(NSString *)actionTitle handler:( void(^)() )handler;
+- (void)showWithTitle:(NSString *)title actionButtonTitle:(NSString *)actionButtonTitle handler:( void(^)() )handler;
+- (void)showWithTitle:(NSString *)title dismissButtonTitle:(NSString *)dismissButtonTitle actionButtonTitle:(NSString *)actionButtonTitle handler:( void(^)() )handler;
 
 @end

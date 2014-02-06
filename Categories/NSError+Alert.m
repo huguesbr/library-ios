@@ -21,25 +21,33 @@ static BOOL _isShowingError;
 
 - (void)showWithTitle:(NSString *)title
 {
-    [self showWithTitle:title actionTitle:nil handler:nil];
+    [self showWithTitle:title actionButtonTitle:nil handler:nil];
 }
 
-- (void)showWithTitle:(NSString *)title actionTitle:(NSString *)actionTitle handler:( void(^)() )handler;
+- (void)showWithTitle:(NSString *)title actionButtonTitle:(NSString *)actionButtonTitle handler:( void(^)() )handler;
 {
-    [self showWithTitle:title dismiss:@"" actionTitle:actionTitle handler:handler];
+    [self showWithTitle:title dismissButtonTitle:k$(@"Dismiss") actionButtonTitle:actionButtonTitle handler:handler];
 }
 
-- (void)showWithTitle:(NSString *)title dismiss:(NSString *)dismissTitle actionTitle:(NSString *)actionTitle handler:( void(^)() )handler;
+- (void)showWithTitle:(NSString *)title dismissButtonTitle:(NSString *)dismissButtonTitle actionButtonTitle:(NSString *)actionButtonTitle handler:( void(^)() )handler;
 {
     if(_isShowingError) return;
     _isShowingError = YES;
     NSLog(@"description: %@", self.description);
     NSLog(@"localized: %@", self.localizedDescription);
-    NSArray *buttons = actionTitle ? @[actionTitle] : nil;
-    [UIAlertView showAlertViewWithTitle:title message:self.localizedDescription cancelButtonTitle:dismissTitle otherButtonTitles:buttons handler:^(UIAlertView *alertView, NSInteger buttonIndex) {
-        if (buttonIndex && handler) handler();
-        _isShowingError = NO;
-    }];
+    YDAlertView *alertView = [YDAlertView alertViewWithTitle:title message:self.localizedDescription];
+    if(dismissButtonTitle) {
+        [alertView setCancelButtonWithTitle:dismissButtonTitle handler:^{
+            _isShowingError = NO;
+        }];
+    }
+    if(actionButtonTitle) {
+        [alertView addButtonWithTitle:actionButtonTitle handler:^{
+            _isShowingError = NO;
+            if(handler) handler();
+        }];
+    }
+    [alertView show];
 }
 
 @end
