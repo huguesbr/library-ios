@@ -9,8 +9,16 @@
 #import "UIDevice+Extra.h"
 
 @implementation UIDevice (Extra)
+
 -(NSString *)deviceId
 {
     return [[UIDevice currentDevice] identifierForVendor].UUIDString;
 }
+
+- (NSString *)systemMajorVersion
+{
+    NSString *systemVersion = [self systemVersion];
+    return [systemVersion substringWithRange:NSMakeRange(0, MIN(1, systemVersion.length))];
+}
+
 @end

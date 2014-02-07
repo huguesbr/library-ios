@@ -15,5 +15,8 @@
 
 
 @interface UIDevice (Extra)
+
 @property (readonly) NSString *deviceId;
+@property (readonly) NSString *systemMajorVersion;
+
 @end
