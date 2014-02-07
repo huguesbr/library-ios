@@ -40,22 +40,42 @@
 {
     if([self shouldTryToRegister]) return NO; // never prompt if we already authorize
     
+    // prompt count
+    NSInteger count = [[NSUserDefaults standardUserDefaults] integerForKey:kSettingKeyPushNotificationPromptCount];
+    NSLog(@"Push notification prompt count: %d", count);
+    if(count > kPushNotificationMaxPrompt) return NO;
+    
     // prompt if never prompt or last prompt was more than kTimeIntervalBeforeAskForNotificationAgain ago
     BOOL shouldPrompt = [[NSUserDefaults standardUserDefaults] boolForKey:kSettingKeyShouldPromptForPushNotification];
     [[NSUserDefaults standardUserDefaults] setBool:NO forKey:kSettingKeyShouldPromptForPushNotification];
-//    shouldPrompt = YES;
+    [[NSUserDefaults standardUserDefaults] synchronize];
     if(shouldPrompt == NO){
         NSDate *date = [[NSUserDefaults standardUserDefaults] objectForKey:kSettingKeyLastPromptForPushNotification];
+        NSLog(@"Push notification last prompt: %@", date);
         NSTimeInterval timeIntervalSinceLastPrompt = [[NSDate date] timeIntervalSinceDate:date];
         if(!date || timeIntervalSinceLastPrompt > kAppTimeIntervalBeforeAskForPushNotificationAgain)
             shouldPrompt = YES;
     }
-    if(shouldPrompt == YES) // remember last prompt time
-        [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:kSettingKeyLastPromptForPushNotification];
-    
-    [[NSUserDefaults standardUserDefaults] synchronize];
+    if(shouldPrompt == YES) {
+        [self rememberLastPromptDate];
+        [self incrementPromptCount];
+    }
     
     return shouldPrompt;
+}
+
++ (void)rememberLastPromptDate;
+{
+    // increment counter
+    NSInteger count = [[NSUserDefaults standardUserDefaults] integerForKey:kSettingKeyPushNotificationPromptCount];
+    [[NSUserDefaults standardUserDefaults] setInteger:count + 1 forKey:kSettingKeyPushNotificationPromptCount];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
++ (void)incrementPromptCount;
+{
+    [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:kSettingKeyLastPromptForPushNotification];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 + (void)handleNotification:(NSDictionary *)aps

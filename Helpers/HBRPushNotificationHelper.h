@@ -13,8 +13,12 @@
 #define kSettingKeyShouldTryToRegisterForPushNotification       @"SettingKeyShouldTryToRegisterForPushNotification"
 #define kSettingKeyShouldPromptForPushNotification              @"SettingKeyShouldPromptForPushNotification"
 #define kSettingKeyLastPromptForPushNotification                @"SettingKeyLastPromptForPushNotification"
+#define kSettingKeyPushNotificationPromptCount                  @"SettingKeyPushNotificationPromptCount"
 #ifndef kAppTimeIntervalBeforeAskForPushNotificationAgain
 #define kAppTimeIntervalBeforeAskForPushNotificationAgain       3600 * 24 * 7 // ask every week
+#endif
+#ifndef kPushNotificationMaxPrompt
+#define kPushNotificationMaxPrompt                              3 // user will be ask max 3
 #endif
 #ifndef kPushNotificationRegisterTypes
 #define kPushNotificationRegisterTypes  (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)
@@ -31,5 +35,7 @@
 + (void)registerNotificationUnlessNeverAsked;
 + (void)setAlias:(NSString *)newAlias;
 + (BOOL)shouldTryToRegister;
++ (void)rememberLastPromptDate;
++ (void)incrementPromptCount;
 
 @end
