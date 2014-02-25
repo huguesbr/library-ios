@@ -166,13 +166,16 @@
     [Settings synchronize];
 }
 
-- (void)performBlockOnce:( void(^)() )block usingKey:(NSString *)settingKey;
+- (BOOL)performBlockOnce:( void(^)() )block usingKey:(NSString *)settingKey;
 {
+    BOOL didPerform = NO;
     if([Settings boolForKey:settingKey] == NO) {
+        didPerform = YES;
         [Settings setBool:YES forKey:settingKey];
         [Settings synchronize];
         if(block) block();
     }
+    return didPerform;
 }
 
 - (NSArray*)enabledRemoteNotificationTypesString;

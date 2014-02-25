@@ -36,6 +36,6 @@
 
 - (void)performBlock:( void(^)() )block everyXTime:(NSInteger)time usingKey:(NSString *)settingKey otherwise:( void(^)(NSInteger) )otherBlock;
 
-- (void)performBlockOnce:( void(^)() )block usingKey:(NSString *)settingKey;
+- (BOOL)performBlockOnce:( void(^)() )block usingKey:(NSString *)settingKey;
 
 @end
