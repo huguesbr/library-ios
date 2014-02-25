@@ -10,8 +10,8 @@
 
 @interface NSArray (FilteredSortedShortcuts)
 
-- (NSArray *)filteredArrayUsingPredicateFormat:(NSString *)predicateFormat sortedWithKey:(NSString *)key ascending:(BOOL)ascending;
-- (NSArray *)filteredArrayUsingPredicateFormat:(NSString *)predicateFormat;
+- (NSArray *)filteredArrayUsingPredicateFormat:(NSString *)predicateFormat arguments:(NSArray *)arguments sortedWithKey:(NSString *)key ascending:(BOOL)ascending;
+- (NSArray *)filteredArrayUsingPredicateFormat:(NSString *)predicateFormat arguments:(NSArray *)arguments;
 - (NSArray *)sortedArrayWithKey:(NSString *)key ascending:(BOOL)ascending;
 - (NSArray *)collectUsingKey:(NSString *)key;
 - (NSArray *)collapseUsingKey:(NSString *)key;

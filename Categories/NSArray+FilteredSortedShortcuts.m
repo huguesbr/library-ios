@@ -10,14 +10,14 @@
 
 @implementation NSArray (FilteredSortedShortcuts)
 
-- (NSArray *)filteredArrayUsingPredicateFormat:(NSString *)predicateFormat sortedWithKey:(NSString *)key ascending:(BOOL)ascending;
+- (NSArray *)filteredArrayUsingPredicateFormat:(NSString *)predicateFormat arguments:(NSArray *)arguments sortedWithKey:(NSString *)key ascending:(BOOL)ascending;
 {
-    return [[self filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:predicateFormat]] sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:key ascending:ascending]]];
+    return [[self filteredArrayUsingPredicateFormat:predicateFormat arguments:arguments] sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:key ascending:ascending]]];
 }
 
-- (NSArray *)filteredArrayUsingPredicateFormat:(NSString *)predicateFormat;
+- (NSArray *)filteredArrayUsingPredicateFormat:(NSString *)predicateFormat arguments:(NSArray *)arguments;
 {
-    return [self filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:predicateFormat]];
+    return [self filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:predicateFormat argumentArray:arguments]];
 }
 
 - (NSArray *)sortedArrayWithKey:(NSString *)key ascending:(BOOL)ascending;
