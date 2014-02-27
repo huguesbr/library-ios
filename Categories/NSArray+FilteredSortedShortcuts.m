@@ -20,6 +20,11 @@
     return [self filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:predicateFormat argumentArray:arguments]];
 }
 
+- (NSArray *)filteredArrayUsingPredicateFormat:(NSString *)predicateFormat;
+{
+    return [self filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:predicateFormat argumentArray:nil]];
+}
+
 - (NSArray *)sortedArrayWithKey:(NSString *)key ascending:(BOOL)ascending;
 {
     return [self sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:key ascending:ascending]]];

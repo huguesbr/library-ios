@@ -12,6 +12,7 @@
 
 - (NSArray *)filteredArrayUsingPredicateFormat:(NSString *)predicateFormat arguments:(NSArray *)arguments sortedWithKey:(NSString *)key ascending:(BOOL)ascending;
 - (NSArray *)filteredArrayUsingPredicateFormat:(NSString *)predicateFormat arguments:(NSArray *)arguments;
+- (NSArray *)filteredArrayUsingPredicateFormat:(NSString *)predicateFormat;
 - (NSArray *)sortedArrayWithKey:(NSString *)key ascending:(BOOL)ascending;
 - (NSArray *)collectUsingKey:(NSString *)key;
 - (NSArray *)collapseUsingKey:(NSString *)key;
