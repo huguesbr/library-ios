@@ -12,15 +12,20 @@
 
 + (MB_INSTANCETYPE)showHUDReusedOrAddedTo:(UIView *)view animated:(BOOL)animated;
 {
-    id hud = [self HUDForView:view];
-    if(!hud) hud = [self showHUDAddedTo:view animated:animated];
-    return hud;
+    return [self showHUDReusedOrAddedTo:view labelText:nil animated:animated blocking:YES];
 }
 
-+ (MB_INSTANCETYPE)showHUDReusedOrAddedTo:(UIView *)view labelText:(NSString *)text animated:(BOOL)animated;
++ (MB_INSTANCETYPE)showHUDReusedOrAddedTo:(UIView *)view labelText:(NSString *)text animated:(BOOL)animated
 {
-    id hud = [self showHUDReusedOrAddedTo:view animated:animated];
-    [hud setLabelText:text];
+    return [self showHUDReusedOrAddedTo:view labelText:text animated:animated blocking:YES];
+}
+
++ (MB_INSTANCETYPE)showHUDReusedOrAddedTo:(UIView *)view labelText:(NSString *)text animated:(BOOL)animated blocking:(BOOL)blocking;
+{
+    id hud = [self HUDForView:view];
+    if(!hud) hud = [self showHUDAddedTo:view animated:animated];
+    if(text) [hud setLabelText:text];
+    [hud setUserInteractionEnabled:!blocking];
     return hud;
 }
 

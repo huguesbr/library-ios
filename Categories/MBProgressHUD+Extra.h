@@ -12,5 +12,6 @@
 
 + (MB_INSTANCETYPE)showHUDReusedOrAddedTo:(UIView *)view animated:(BOOL)animated;
 + (MB_INSTANCETYPE)showHUDReusedOrAddedTo:(UIView *)view labelText:(NSString *)text animated:(BOOL)animated;
++ (MB_INSTANCETYPE)showHUDReusedOrAddedTo:(UIView *)view labelText:(NSString *)text animated:(BOOL)animated blocking:(BOOL)blocking;
 
 @end
