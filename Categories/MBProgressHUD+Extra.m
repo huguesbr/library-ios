@@ -26,7 +26,7 @@
     if(!hud) hud = [self showHUDAddedTo:view animated:animated];
     [hud show:animated];
     if(text) [hud setLabelText:text];
-    [hud setUserInteractionEnabled:!blocking];
+    [hud setUserInteractionEnabled:blocking];
     return hud;
 }
 
