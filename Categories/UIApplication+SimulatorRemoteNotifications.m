@@ -40,7 +40,7 @@ static int __port = PORT;
 		if ((size = recvfrom(__socket, __buffer, BUFLEN, 0, (struct sockaddr*)&__si_other, &slen))==-1) {
 			NSLog(@"SimulatorRemoteNotification: recvfrom error");
 		}
-		//NSLog(@"SimulatorRemoteNotification: received from %s:%d data = %s\n\n", inet_ntoa(__si_other.sin_addr), ntohs(__si_other.sin_port), __buffer);
+		//NSLog(@"SimulatorRemoteNotification: received from %s:%d data = %s\n\n",o9 inet_ntoa(__si_other.sin_addr), ntohs(__si_other.sin_port), __buffer);
 		__buffer[size] = NULL;
 		NSString *string = [NSString stringWithUTF8String:__buffer];
         
