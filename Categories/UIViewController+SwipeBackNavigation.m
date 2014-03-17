@@ -20,7 +20,7 @@
 {
     if(self.navigationController) {
         WeakifySelf(weakSelf)
-        UISwipeGestureRecognizer *backSwipeGesture = [[UISwipeGestureRecognizer alloc] initWithHandler:^(UIGestureRecognizer *sender, UIGestureRecognizerState state, CGPoint location) {
+        UISwipeGestureRecognizer *backSwipeGesture = [[UISwipeGestureRecognizer alloc] bk_initWithHandler:^(UIGestureRecognizer *sender, UIGestureRecognizerState state, CGPoint location) {
             [weakSelf.navigationController popViewControllerAnimated:YES];
         }];
         backSwipeGesture.direction = UISwipeGestureRecognizerDirectionRight;

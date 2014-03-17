@@ -97,14 +97,14 @@
     if([UIApplication sharedApplication].applicationState == UIApplicationStateActive ) {
         //        //The application received a notification in the active state, so you can display an alert view or do something appropriate.
         
-        UIAlertView *alertView = [UIAlertView alertViewWithTitle:NSLocalizedString(@"Notification", @"Notification Helper Notification Title") message:aps[@"alert"]];
-        [alertView setCancelButtonWithTitle:NSLocalizedString(@"Dismiss", @"Notification Helper Notification Dismiss") handler:nil];
+        UIAlertView *alertView = [UIAlertView bk_alertViewWithTitle:NSLocalizedString(@"Notification", @"Notification Helper Notification Title") message:aps[@"alert"]];
+        [alertView bk_setCancelButtonWithTitle:NSLocalizedString(@"Dismiss", @"Notification Helper Notification Dismiss") handler:nil];
         if([aps[@"u"] safeValue]) {
             NSString *buttonLabel = NSLocalizedString(@"Show", @"Notification Helper Deeplink Show");
             if (aps[@"a"]) {
                 buttonLabel = NSLocalizedString(aps[@"a"], @"Notification Helper Deeplink Custom Label");
             }
-            [alertView addButtonWithTitle:buttonLabel handler:deeplink];
+            [alertView bk_addButtonWithTitle:buttonLabel handler:deeplink];
         }
         [alertView show];
     }
@@ -123,9 +123,9 @@
 
 + (void)doPromptWithMessage:(NSString *)message;
 {
-    UIAlertView *alertView = [UIAlertView alertViewWithTitle:NSLocalizedString(@"Notifications", @"Notification Helper Prompt Title") message:message];
-    [alertView setCancelButtonWithTitle:NSLocalizedString(@"Maybe later", @"Notification Helper Prompt Later")   handler:nil];
-    [alertView addButtonWithTitle:NSLocalizedString(@"Let's do it!", @"Notification Helper Prompt Do it") handler:^{
+    UIAlertView *alertView = [UIAlertView bk_alertViewWithTitle:NSLocalizedString(@"Notifications", @"Notification Helper Prompt Title") message:message];
+    [alertView bk_setCancelButtonWithTitle:NSLocalizedString(@"Maybe later", @"Notification Helper Prompt Later")   handler:nil];
+    [alertView bk_addButtonWithTitle:NSLocalizedString(@"Let's do it!", @"Notification Helper Prompt Do it") handler:^{
         [HBRPushNotificationHelper registerNotification];
     }];
     [alertView show];

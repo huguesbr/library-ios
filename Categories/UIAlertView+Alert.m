@@ -14,12 +14,12 @@
 
 + (id)alertViewWithTitle:(NSString *)title message:(NSString *)message dismissButtonTitle:(NSString *)dismissButtonTitle actionButtonTitle:(NSString *)actionButtonTitle action:( void(^)(NSString *inputText) )actionBlock;
 {
-    UIAlertView *alertView = [[self class] alertViewWithTitle:title message:message];
+    UIAlertView *alertView = [[self class] bk_alertViewWithTitle:title message:message];
     if([dismissButtonTitle isEqualToString:@""]) dismissButtonTitle = kUIAlertDefaultCancelButtonTitle;
-    if(dismissButtonTitle) [alertView setCancelButtonWithTitle:dismissButtonTitle handler:nil];
+    if(dismissButtonTitle) [alertView bk_setCancelButtonWithTitle:dismissButtonTitle handler:nil];
     if(actionButtonTitle) {
         Weakify(alertView) weakAlertView = alertView;
-        [alertView addButtonWithTitle:actionButtonTitle handler:^{
+        [alertView bk_addButtonWithTitle:actionButtonTitle handler:^{
             if(actionBlock) {
                 if (weakAlertView.alertViewStyle == UIAlertViewStylePlainTextInput)
                     actionBlock([[weakAlertView textFieldAtIndex:0] text]);

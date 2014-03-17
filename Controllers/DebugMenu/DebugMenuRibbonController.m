@@ -41,7 +41,7 @@ static DebugMenuRibbonController *_sharedDebugMenuRibbonController = nil;
     dispatch_once(&onceToken, ^{
         UITableViewController *tableViewController = [[UITableViewController alloc] initWithStyle:UITableViewStylePlain];
         _sharedDebugMenuRibbonController = [[self alloc] initWithRootViewController:tableViewController];
-        tableViewController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone handler:^(id sender) {
+        tableViewController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] bk_initWithBarButtonSystemItem:UIBarButtonSystemItemDone handler:^(id sender) {
             [_sharedDebugMenuRibbonController hideDebugMenu];
         }];
         tableViewController.tableView.delegate = delegate;
@@ -83,7 +83,7 @@ static DebugMenuRibbonController *_sharedDebugMenuRibbonController = nil;
 	self.ribbon.userInteractionEnabled = NO; // Off until shake guesture drops the ribbon into view
 	self.ribbon.frame = ribbonFrame;
     __weak id weakSelf = self;
-	[self.ribbon addEventHandler:^(id sender) {
+	[self.ribbon bk_addEventHandler:^(id sender) {
         [weakSelf showDebugMenu];
     } forControlEvents:UIControlEventTouchUpInside];
 	

@@ -35,14 +35,14 @@ static BOOL _isShowingError;
     _isShowingError = YES;
     NSLog(@"description: %@", self.description);
     NSLog(@"localized: %@", self.localizedDescription);
-    YDAlertView *alertView = [YDAlertView alertViewWithTitle:title message:self.localizedDescription];
+    YDAlertView *alertView = [YDAlertView bk_alertViewWithTitle:title message:self.localizedDescription];
     if(dismissButtonTitle) {
-        [alertView setCancelButtonWithTitle:dismissButtonTitle handler:^{
+        [alertView bk_setCancelButtonWithTitle:dismissButtonTitle handler:^{
             _isShowingError = NO;
         }];
     }
     if(actionButtonTitle) {
-        [alertView addButtonWithTitle:actionButtonTitle handler:^{
+        [alertView bk_addButtonWithTitle:actionButtonTitle handler:^{
             _isShowingError = NO;
             if(handler) handler();
         }];
