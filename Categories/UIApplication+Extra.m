@@ -141,7 +141,7 @@
 - (void)performBlock:( void(^)() )block every:(NSInteger)delay usingKey:(NSString *)settingKey otherwise:( void(^)(NSDate *) )otherBlock;
 {
     NSDate *lastDate = [Settings objectForKey:settingKey];
-    NSLog(@"Last executed %@ :%@", settingKey, lastDate);
+    NSTrack(@"Last executed %@ :%@", settingKey, lastDate);
     if([lastDate timeIntervalSinceNow] < -delay || !lastDate) {
         [Settings setObject:[NSDate date] forKey:settingKey];
         [Settings synchronize];
@@ -154,7 +154,7 @@
 - (void)performBlock:( void(^)() )block everyXTime:(NSInteger)time usingKey:(NSString *)settingKey otherwise:( void(^)(NSInteger) )otherBlock;
 {
     NSInteger nbTimeAlready = [Settings integerForKey:settingKey];
-    NSLog(@"Number of time asked %@ :%d", settingKey, nbTimeAlready);
+    NSTrack(@"Number of time asked %@ :%d", settingKey, nbTimeAlready);
     if(nbTimeAlready == 0) {
         if(block) block();
     } else {

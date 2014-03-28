@@ -34,7 +34,7 @@ static BOOL _isShowingError;
     if(_isShowingError) return;
     _isShowingError = YES;
     NSLog(@"description: %@", self.description);
-    NSLog(@"localized: %@", self.localizedDescription);
+    NSTrack(@"localized: %@", self.localizedDescription);
     YDAlertView *alertView = [YDAlertView bk_alertViewWithTitle:title message:self.localizedDescription];
     if(dismissButtonTitle) {
         [alertView bk_setCancelButtonWithTitle:dismissButtonTitle handler:^{
