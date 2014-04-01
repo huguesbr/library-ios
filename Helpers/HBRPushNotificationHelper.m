@@ -27,6 +27,7 @@
         shouldTryToRegister = YES;
         [self setShouldTryToRegister:YES];
     }
+    NSTrack(@"push notification: should try to register: %@", shouldTryToRegister ? @"YES": @"NO");
     return shouldTryToRegister;
 }
 
@@ -42,7 +43,7 @@
     
     // prompt count
     NSInteger count = [[NSUserDefaults standardUserDefaults] integerForKey:kSettingKeyPushNotificationPromptCount];
-    NSTrack(@"Push notification prompt count: %d", count);
+    NSTrack(@"push notification: prompt count: %d", count);
     if(count > kPushNotificationMaxPrompt) return NO;
     
     // prompt if never prompt or last prompt was more than kTimeIntervalBeforeAskForNotificationAgain ago
@@ -51,7 +52,7 @@
     [[NSUserDefaults standardUserDefaults] synchronize];
     if(shouldPrompt == NO){
         NSDate *date = [[NSUserDefaults standardUserDefaults] objectForKey:kSettingKeyLastPromptForPushNotification];
-        NSTrack(@"Push notification last prompt: %@", date);
+        NSTrack(@"push notification: last prompt: %@", date);
         NSTimeInterval timeIntervalSinceLastPrompt = [[NSDate date] timeIntervalSinceDate:date];
         if(!date || timeIntervalSinceLastPrompt > kAppTimeIntervalBeforeAskForPushNotificationAgain)
             shouldPrompt = YES;
@@ -80,7 +81,7 @@
 
 + (void)handleNotification:(NSDictionary *)aps
 {
-    NSTrack(@"handling notification: %@", aps);
+    NSTrack(@"push notification: handling notification: %@", aps);
     
     // silent notification
     if(aps[@"s"]) return;
