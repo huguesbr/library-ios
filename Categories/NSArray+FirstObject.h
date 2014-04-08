@@ -15,5 +15,7 @@
 #import <Foundation/Foundation.h>
 
 @interface NSArray (FirstObject)
+- (id)subarrayWithCount:(NSInteger)nb;
 - (id)firstObject;
+- (id)firstObjects:(NSInteger)nb;
 @end

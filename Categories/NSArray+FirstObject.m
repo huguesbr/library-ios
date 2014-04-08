@@ -16,4 +16,12 @@
     if ([self count] > 0) firstObject = [self objectAtIndex:0];
     return firstObject;
 }
+- (id)firstObjects:(NSInteger)nb;
+{
+    return [self firstObjects:nb];
+}
+- (id)subarrayWithCount:(NSInteger)nb;
+{
+    return [self subarrayWithRange:NSMakeRange(0, MIN(self.count, nb))];
+}
 @end
