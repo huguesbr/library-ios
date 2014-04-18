@@ -141,7 +141,7 @@
 - (void)performBlock:( void(^)() )block every:(NSInteger)delay usingKey:(NSString *)settingKey otherwise:( void(^)(NSDate *) )otherBlock;
 {
     NSDate *lastDate = [Settings objectForKey:settingKey];
-    NSTrack(@"app: perform block every %d seconds, last executed %@ :%@", delay, settingKey, lastDate);
+    NSTrack(@"app: perform block every %ld seconds, last executed %@ :%@", (long)delay, settingKey, lastDate);
     if([lastDate timeIntervalSinceNow] < -delay || !lastDate) {
         [Settings setObject:[NSDate date] forKey:settingKey];
         [Settings synchronize];

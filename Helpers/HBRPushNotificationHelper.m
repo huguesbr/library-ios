@@ -43,7 +43,7 @@
     
     // prompt count
     NSInteger count = [[NSUserDefaults standardUserDefaults] integerForKey:kSettingKeyPushNotificationPromptCount];
-    NSTrack(@"push notification: prompt count: %d", count);
+    NSTrack(@"push notification: prompt count: %ld", count);
     if(count > kPushNotificationMaxPrompt) return NO;
     
     // prompt if never prompt or last prompt was more than kTimeIntervalBeforeAskForNotificationAgain ago
