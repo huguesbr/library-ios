@@ -25,4 +25,36 @@
     return todaysWeek == dateWeek;
 }
 
+- (NSString *)timeLeftSinceDate:(NSDate *)date;
+{
+    NSString *timeLeft;
+    NSInteger seconds = [date timeIntervalSinceDate:self];
+    NSInteger days = (int) (floor(seconds / (3600 * 24)));
+    if(days) seconds -= days * 3600 * 24;
+    NSInteger hours = (int) (floor(seconds / 3600));
+    if(hours) seconds -= hours * 3600;
+    NSInteger minutes = (int) (floor(seconds / 60));
+    if(minutes) seconds -= minutes * 60;
+    if(days) {
+        if(hours) timeLeft = [$$ @"%ldd %ldh", (long)days, (long)hours];
+        else timeLeft = [$$ @"%ldd", (long)days];
+    }
+    else if(hours) {
+        if(minutes) timeLeft = [$$ @"%ldh %ldm", (long)hours, (long)minutes];
+        else timeLeft = [$$ @"%ldh", (long)hours];
+    }
+    else if(minutes) {
+        if(seconds) timeLeft = [$$ @"%ldm %lds", (long)minutes, (long)seconds];
+        else timeLeft = [$$ @"%ldm", (long)minutes];
+    }
+    else if(seconds)
+        timeLeft = [$$ @"%lds", (long)seconds];
+    return timeLeft;
+}
+
+- (NSString *)timeLeftSinceNow;
+{
+    return [self timeLeftSinceDate:[NSDate date]];
+}
+
 @end

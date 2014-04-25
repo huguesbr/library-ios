@@ -12,5 +12,7 @@
 
 - (BOOL)isToday;
 - (BOOL)isThisWeek;
+- (NSString *)timeLeftSinceDate:(NSDate *)date;
+- (NSString *)timeLeftSinceNow;
 
 @end
