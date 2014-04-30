@@ -27,6 +27,11 @@
     self.layer.masksToBounds = clipping;
 }
 
+- (void)makeRoundedWithBorder:(CGFloat)border;
+{
+    [self makeRoundedCornerWithRadius:self.frame.size.width / 2. border:border color:[UIColor blackColor]];
+}
+
 - (void)makeRoundedCornerWithRadius:(CGFloat)radius border:(CGFloat)border;
 {
     [self makeRoundedCornerWithRadius:radius border:border color:[UIColor blackColor]];

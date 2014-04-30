@@ -14,6 +14,8 @@
 
 - (void)setBorderWithColor:(UIColor *)color width:(CGFloat)width radius:(CGFloat)radius clipping:(BOOL)clipping;
 
+- (void)makeRoundedWithBorder:(CGFloat)border;
+
 - (void)makeRoundedCornerWithRadius:(CGFloat)radius border:(CGFloat)border;
 
 - (void)makeRoundedCornerWithRadius:(CGFloat)radius border:(CGFloat)border color:(UIColor *)color;

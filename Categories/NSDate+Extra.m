@@ -28,7 +28,7 @@
 - (NSString *)timeLeftSinceDate:(NSDate *)date;
 {
     NSString *timeLeft;
-    NSInteger seconds = [date timeIntervalSinceDate:self];
+    NSInteger seconds = [self timeIntervalSinceDate:date];
     NSInteger days = (int) (floor(seconds / (3600 * 24)));
     if(days) seconds -= days * 3600 * 24;
     NSInteger hours = (int) (floor(seconds / 3600));
