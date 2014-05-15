@@ -154,7 +154,7 @@
 - (void)performBlock:( void(^)() )block everyXTime:(NSInteger)time usingKey:(NSString *)settingKey otherwise:( void(^)(NSInteger) )otherBlock;
 {
     NSInteger nbTimeAlready = [Settings integerForKey:settingKey];
-    NSTrack(@"app: perform block every %ld times, %@ :%ld", time, settingKey, nbTimeAlready);
+    NSTrack(@"app: perform block every %ld times, %@ :%ld", time, settingKey, (long)nbTimeAlready);
     if(nbTimeAlready == 0) {
         if(block) block();
     } else {
