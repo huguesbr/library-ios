@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+#ifndef kUIViewActivityIndicatorViewStyle
+#define kUIViewActivityIndicatorViewStyle UIActivityIndicatorViewStyleWhite
+#endif
+
 @interface UIView (Activity)
 
 - (void)startActivityIndicator;

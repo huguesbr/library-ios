@@ -17,7 +17,7 @@
 
 - (void)startActivityIndicator;
 {
-    [self startActivityIndicatorWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    [self startActivityIndicatorWithActivityIndicatorStyle:kUIViewActivityIndicatorViewStyle];
 }
 
 - (void)startActivityIndicatorWithActivityIndicatorStyle:(UIActivityIndicatorViewStyle)style;
