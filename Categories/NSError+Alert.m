@@ -16,7 +16,7 @@ static BOOL _isShowingError;
 
 - (void)show
 {
-    [self showWithTitle:@"Error"];
+    [self showWithTitle:self.domain];
 }
 
 - (void)showWithTitle:(NSString *)title
