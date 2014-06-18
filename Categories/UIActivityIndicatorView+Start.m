@@ -12,7 +12,7 @@
 
 + (id)activityIndicatorStarted;
 {
-    return [self activityIndicatorStartedWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    return [self activityIndicatorStartedWithActivityIndicatorStyle:kUIActivityIndicatorViewStyleDefault];
 }
 
 + (id)activityIndicatorStartedWithActivityIndicatorStyle:(UIActivityIndicatorViewStyle)style;
