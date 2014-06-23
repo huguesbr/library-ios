@@ -16,6 +16,10 @@ static BOOL _isShowingError;
 
 - (void)show
 {
+    NSString *title = @"Error";
+#if DEBUG
+    title = self.domain;
+#endif
     [self showWithTitle:self.domain];
 }
 
