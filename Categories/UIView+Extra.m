@@ -44,7 +44,7 @@
 
 - (void)makeRoundedCornerWithRadius:(CGFloat)radius border:(CGFloat)border color:(UIColor *)color clipBound:(BOOL)clip;
 {
-    [self makeRoundedCornerWithRadius:radius border:border color:color clipBound:YES shouldRasterize:YES];
+    [self makeRoundedCornerWithRadius:radius border:border color:color clipBound:YES shouldRasterize:kMakeRoundedCornerRasterized];
 }
 
 - (void)makeRoundedCornerWithRadius:(CGFloat)radius border:(CGFloat)border color:(UIColor *)color clipBound:(BOOL)clip shouldRasterize:(BOOL)shouldRasterize;

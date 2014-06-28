@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+#ifndef kMakeRoundedCornerRasterized
+#define kMakeRoundedCornerRasterized NO
+#endif
+
 @interface UIView (Extra)
 
 - (void)setShadowWithColor:(UIColor *)color offset:(CGSize)offset opacity:(CGFloat)opacity radius:(CGFloat)radius;
