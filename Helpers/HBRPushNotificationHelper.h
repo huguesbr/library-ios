@@ -26,16 +26,21 @@
 
 @interface HBRPushNotificationHelper : NSObject
 
++ (BOOL)shouldTryToRegister;
 + (BOOL)shouldPrompt;
+
 + (BOOL)prompt;
 + (BOOL)promptWithMessage:(NSString *)message;
 + (void)doPromptWithMessage:(NSString *)message;
+
 + (void)handleNotification:(NSDictionary *)aps;
 + (void)registerNotification;
 + (void)registerNotificationUnlessNeverAsked;
 + (void)setAlias:(NSString *)newAlias;
-+ (BOOL)shouldTryToRegister;
+
++ (void)rememberPrompt;
 + (void)rememberLastPromptDate;
 + (void)incrementPromptCount;
++ (void)resetPrompt;
 
 @end

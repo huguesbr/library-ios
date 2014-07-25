@@ -71,6 +71,12 @@
     [self incrementPromptCount];
 }
 
++ (void)resetPrompt;
+{
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:kSettingKeyPushNotificationPromptCount];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:kSettingKeyLastPromptForPushNotification];
+}
+
 + (void)rememberLastPromptDate;
 {
     // increment counter
