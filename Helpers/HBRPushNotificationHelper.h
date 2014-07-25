@@ -27,8 +27,8 @@
 @interface HBRPushNotificationHelper : NSObject
 
 + (BOOL)shouldPrompt;
-+ (void)prompt;
-+ (void)promptWithMessage:(NSString *)message;
++ (BOOL)prompt;
++ (BOOL)promptWithMessage:(NSString *)message;
 + (void)doPromptWithMessage:(NSString *)message;
 + (void)handleNotification:(NSDictionary *)aps;
 + (void)registerNotification;

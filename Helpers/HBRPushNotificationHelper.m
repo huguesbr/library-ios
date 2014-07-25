@@ -57,12 +57,18 @@
         if(!date || timeIntervalSinceLastPrompt > kAppTimeIntervalBeforeAskForPushNotificationAgain)
             shouldPrompt = YES;
     }
+    
     if(shouldPrompt == YES) {
-        [self rememberLastPromptDate];
-        [self incrementPromptCount];
+        [self rememberPrompt];
     }
     
     return shouldPrompt;
+}
+
++ (void)rememberPrompt;
+{
+    [self rememberLastPromptDate];
+    [self incrementPromptCount];
 }
 
 + (void)rememberLastPromptDate;
@@ -111,15 +117,16 @@
     }
 }
 
-+ (void)prompt;
++ (BOOL)prompt;
 {
-    [self promptWithMessage:NSLocalizedString(@"Would you like us to send notification about the app", @"Notification Helper Prompt Message")];
+    return [self promptWithMessage:NSLocalizedString(@"Would you like us to send notification about the app", @"Notification Helper Prompt Message")];
 }
 
-+ (void)promptWithMessage:(NSString *)message;
++ (BOOL)promptWithMessage:(NSString *)message;
 {
-    if([HBRPushNotificationHelper shouldPrompt])
-        [self doPromptWithMessage:message];
+    BOOL should = [HBRPushNotificationHelper shouldPrompt];
+    if(should) [self doPromptWithMessage:message];
+    return should;
 }
 
 + (void)doPromptWithMessage:(NSString *)message;
