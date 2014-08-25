@@ -181,23 +181,39 @@
 - (NSArray*)enabledRemoteNotificationTypesString;
 {
     NSMutableArray* enabledTypesArray = [NSMutableArray array];
-    UIRemoteNotificationType enabledTypes = [[UIApplication sharedApplication] enabledRemoteNotificationTypes];
-    if (enabledTypes & UIRemoteNotificationTypeNone)
-        [enabledTypesArray addObject:@"UIRemoteNotificationTypeNone"];
-    if (enabledTypes & UIRemoteNotificationTypeBadge)
-        [enabledTypesArray addObject:@"UIRemoteNotificationTypeBadge"];
-    if (enabledTypes & UIRemoteNotificationTypeSound)
-        [enabledTypesArray addObject:@"UIRemoteNotificationTypeSound"];
-    if (enabledTypes & UIRemoteNotificationTypeAlert)
-        [enabledTypesArray addObject:@"UIRemoteNotificationTypeAlert"];
-    if (enabledTypes & UIRemoteNotificationTypeNewsstandContentAvailability)
-        [enabledTypesArray addObject:@"UIRemoteNotificationTypeNewsstandContentAvailability"];
+    if ([self respondsToSelector:@selector(currentUserNotificationSettings)]) {
+        UIUserNotificationType enabledTypes = [self currentUserNotificationSettings].types;
+        if (enabledTypes & UIUserNotificationTypeNone)
+            [enabledTypesArray addObject:@"None"];
+        if (enabledTypes & UIUserNotificationTypeBadge)
+            [enabledTypesArray addObject:@"Badge"];
+        if (enabledTypes & UIUserNotificationTypeSound)
+            [enabledTypesArray addObject:@"Sound"];
+        if (enabledTypes & UIUserNotificationTypeAlert)
+            [enabledTypesArray addObject:@"Alert"];
+    } else {
+        UIRemoteNotificationType enabledTypes = [self enabledRemoteNotificationTypes];
+        if (enabledTypes & UIRemoteNotificationTypeNone)
+            [enabledTypesArray addObject:@"None"];
+        if (enabledTypes & UIRemoteNotificationTypeBadge)
+            [enabledTypesArray addObject:@"Badge"];
+        if (enabledTypes & UIRemoteNotificationTypeSound)
+            [enabledTypesArray addObject:@"Sound"];
+        if (enabledTypes & UIRemoteNotificationTypeAlert)
+            [enabledTypesArray addObject:@"Alert"];
+    }
     return enabledTypesArray;
 }
 
 - (BOOL)remoteNotificationEnable;
 {
-    return [[UIApplication sharedApplication] enabledRemoteNotificationTypes] != UIRemoteNotificationTypeNone;
+    BOOL remoteNotificationEnable = NO;
+    if ([self respondsToSelector:@selector(isRegisteredForRemoteNotifications)]) {
+        remoteNotificationEnable = [self isRegisteredForRemoteNotifications];
+    } else {
+        remoteNotificationEnable = [self enabledRemoteNotificationTypes] != UIRemoteNotificationTypeNone;
+    }
+    return remoteNotificationEnable;
 }
 
 - (NSString *)locationServicesStatusString;
