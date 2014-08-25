@@ -153,8 +153,10 @@
 
 + (void)registerNotificationUnlessNeverAsked;
 {
-    if([self shouldTryToRegister])
-        [[UAPush shared] registerForRemoteNotificationTypes:kPushNotificationRegisterTypes];
+    if([self shouldTryToRegister]) {
+        [[UAPush shared] setPushEnabled:YES];
+        //        [[UAPush shared] registerForRemoteNotificationTypes:kPushNotificationRegisterTypes];
+    }
 }
 
 + (void)setAlias:(NSString *)newAlias
