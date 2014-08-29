@@ -15,4 +15,9 @@
     [self addAttribute:name value:value range:[[self string] rangeOfString:string]];
 }
 
+- (void)setAttributes:(NSDictionary *)attributes forString:(NSString *)string
+{
+    [self setAttributes:attributes range:[[self string] rangeOfString:string]];
+}
+
 @end

@@ -11,5 +11,6 @@
 @interface NSMutableAttributedString (Extra)
 
 - (void)addAttribute:(NSString *)name value:(id)value forString:(NSString *)string;
+- (void)setAttributes:(NSDictionary *)attributes forString:(NSString *)string;
 
 @end
