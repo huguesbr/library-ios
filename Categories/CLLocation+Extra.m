@@ -38,7 +38,6 @@ static CLLocation *_lastLocation = nil;
 {
     _lastLocation = self;
     
-    
     // Alternative [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:location] forKey:@"someKey"];
     // But wont' save reverseLocation
     NSMutableDictionary *lastLocationDict = [@{} mutableCopy];
@@ -59,18 +58,6 @@ static CLLocation *_lastLocation = nil;
 - (NSString *)reverseLocation
 {
     NSString *reverseLocation = [self associatedObjectforKey:kCLLocationReverseLocation];
-    if(!reverseLocation) {
-        // hacky
-//        [[DMLocationManager shared] o]
-        reverseLocation = @"";
-        //        rev
-//        [[DMLocationManager shared] obtainAddressFromLocation:location completition:^(CLPlacemark *placemark, NSString *address, NSString *locality, NSArray *otherPlacemarks, NSError *error) {
-//            kLastLocationDisplay = placemark ? [NSString stringWithFormat:k$(@"%@, %@"), placemark.locality, placemark.administrativeArea] : k$(@"");
-//            //                [Settings setObject:location forKey:@"lastLocation"];
-//            [self hideBlockingAlert];
-//            if(completionBlock) completionBlock(YES);
-//        }];
-    }
     return reverseLocation;
 }
 
