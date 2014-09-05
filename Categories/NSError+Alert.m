@@ -38,7 +38,7 @@ static BOOL _isShowingError;
     if(_isShowingError) return;
     _isShowingError = YES;
     NSTrack(@"error: show %@ (%@)", self.description, self.localizedDescription);
-    YDAlertView *alertView = [YDAlertView bk_alertViewWithTitle:title message:self.localizedDescription];
+    UIAlertView *alertView = [UIAlertView bk_alertViewWithTitle:title message:self.localizedDescription];
     if(dismissButtonTitle) {
         [alertView bk_setCancelButtonWithTitle:dismissButtonTitle handler:^{
             _isShowingError = NO;
