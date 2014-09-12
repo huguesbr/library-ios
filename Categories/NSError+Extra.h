@@ -9,5 +9,10 @@
 #import <Foundation/Foundation.h>
 
 @interface NSError (Extra)
-+ (NSError *)errorWithDomain:(NSString *)domain code:(NSInteger)code localizedDescription:(NSString *)description;
+@property (readonly, nonatomic) BOOL isNotConnectedToInternetError;
+@property (readonly, nonatomic) NSError *underlyingError;
+@property (readonly, nonatomic) NSString *recursiveDescription;
++ (instancetype)errorWithDomain:(NSString *)domain code:(NSInteger)code localizedDescription:(NSString *)description;
++ (instancetype)errorWithDomain:(NSString *)domain code:(NSInteger)code localizedDescription:(NSString *)description underlyingError:(NSError *)underlyingError;
++ (instancetype)errorWithDomain:(NSString *)domain code:(NSInteger)code userInfo:(NSDictionary *)dict underlyingError:(NSError *)underlyingError;
 @end
