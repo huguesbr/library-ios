@@ -10,9 +10,20 @@
 
 @implementation NSError (Extra)
 
+
+- (BOOL)isDomain:(NSString *)domain code:(NSInteger)code
+{
+    return ([self isDomain:domain] && self.code == code);
+}
+
+- (BOOL)isDomain:(NSString *)domain
+{
+    return [self.domain isEqualToString:domain];
+}
+
 - (BOOL)isNotConnectedToInternetError;
 {
-    return ([self.domain isEqualToString:NSURLErrorDomain] && self.code == NSURLErrorNotConnectedToInternet);
+    return [self isDomain:NSURLErrorDomain code:NSURLErrorNotConnectedToInternet];
 }
 
 - (NSError *)underlyingError
