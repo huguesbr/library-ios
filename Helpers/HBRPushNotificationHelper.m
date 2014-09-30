@@ -14,21 +14,33 @@
 + (void)init
 {
     [[NSUserDefaults standardUserDefaults] registerDefaults:@{
-          kSettingKeyShouldTryToRegisterForPushNotification: @(NO),
-                 kSettingKeyShouldPromptForPushNotification: @(YES)
-     }];
+                                                              kSettingKeyShouldTryToRegisterForPushNotification: @(NO),
+                                                              kSettingKeyShouldPromptForPushNotification: @(YES)
+                                                              }];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 + (BOOL)shouldTryToRegister;
 {
     BOOL shouldTryToRegister = [[NSUserDefaults standardUserDefaults] boolForKey:kSettingKeyShouldTryToRegisterForPushNotification];
-    if([[UIApplication sharedApplication] enabledRemoteNotificationTypes] != UIRemoteNotificationTypeNone) {
+    if([self hasRegisteredNotifications]) {
         shouldTryToRegister = YES;
         [self setShouldTryToRegister:YES];
     }
     NSTrack(@"push notification: should try to register: %@", shouldTryToRegister ? @"YES": @"NO");
     return shouldTryToRegister;
+}
+
++ (BOOL)hasRegisteredNotifications
+{
+    BOOL hasRegistered = NO;
+    if ([[UIApplication sharedApplication] respondsToSelector:@selector(currentUserNotificationSettings)]) {
+        UIUserNotificationSettings *settings = [[UIApplication sharedApplication] currentUserNotificationSettings];
+        hasRegistered = (settings.types != UIUserNotificationTypeNone);
+    } else {
+        hasRegistered = ([[UIApplication sharedApplication] enabledRemoteNotificationTypes] != UIRemoteNotificationTypeNone);
+    }
+    return hasRegistered;
 }
 
 + (void)setShouldTryToRegister:(BOOL)shouldTryToRegister;
