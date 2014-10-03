@@ -11,6 +11,7 @@
 @interface NSString (Crypto)
 
 - (NSString *)sha1;
+- (NSString *)sha256;
 - (NSString *)md5;
 
 @end
