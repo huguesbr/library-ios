@@ -7,9 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <UrbanAirship-iOS-SDK/UAPush.h>
-#import <UrbanAirship-iOS-SDK/UAirship.h>
-#import <UrbanAirship-iOS-SDK/UAConfig.h>
 
 #define kSettingKeyShouldTryToRegisterForPushNotification       @"SettingKeyShouldTryToRegisterForPushNotification"
 #define kSettingKeyShouldPromptForPushNotification              @"SettingKeyShouldPromptForPushNotification"
