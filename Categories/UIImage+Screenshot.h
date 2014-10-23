@@ -8,21 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@implementation UIImage (Screenshot)
-
-+ (instancetype)screenshot
-{
-    UIWindow *window = [UIApplication sharedApplication].keyWindow;
-    CGSize windowSize = [window bounds].size;
-    
-    UIGraphicsBeginImageContext(windowSize);
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    [window.layer renderInContext:context];
-    
-    UIImage *screenshot = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    return screenshot;
-}
-
+@interface UIImage (Screenshot)
++ (instancetype)screenshot;
 @end
