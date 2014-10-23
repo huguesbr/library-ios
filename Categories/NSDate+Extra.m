@@ -17,14 +17,6 @@
     return [today day] == [otherDay day] && [today month] == [otherDay month] &&  [today year] == [otherDay year] && [today era] == [otherDay era];
 }
 
-- (BOOL)isThisWeek;
-{
-    NSCalendar *calendar = [NSCalendar currentCalendar];
-    NSUInteger todaysWeek = [[calendar components:NSWeekCalendarUnit fromDate:[NSDate date]] week];
-    NSUInteger dateWeek = [[calendar components:NSWeekCalendarUnit fromDate:self] week];
-    return todaysWeek == dateWeek;
-}
-
 - (NSString *)timeLeftSinceDate:(NSDate *)date;
 {
     NSString *timeLeft;

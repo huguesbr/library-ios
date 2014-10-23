@@ -11,7 +11,6 @@
 @interface NSDate (Extra)
 
 - (BOOL)isToday;
-- (BOOL)isThisWeek;
 - (NSString *)timeLeftSinceDate:(NSDate *)date;
 - (NSString *)timeLeftSinceNow;
 
