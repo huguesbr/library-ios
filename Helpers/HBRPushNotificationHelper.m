@@ -166,15 +166,14 @@
 + (void)registerNotificationUnlessNeverAsked;
 {
     if([self shouldTryToRegister]) {
-        [[UAPush shared] setPushEnabled:YES];
-        //        [[UAPush shared] registerForRemoteNotificationTypes:kPushNotificationRegisterTypes];
+        if ([[UIApplication sharedApplication] respondsToSelector:NSSelectorFromString(@"registerUserNotificationSettings:")]) {
+            UIUserNotificationSettings *settings = [[UIApplication sharedApplication] currentUserNotificationSettings];
+            [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+            [[UIApplication sharedApplication] registerForRemoteNotifications];
+        } else {
+            [[UIApplication sharedApplication] registerForRemoteNotificationTypes:kPushNotificationRegisterTypes];
+        }
     }
-}
-
-+ (void)setAlias:(NSString *)newAlias
-{
-    [UAPush shared].alias = newAlias;
-    [[UAPush shared] updateRegistration];
 }
 
 @end
