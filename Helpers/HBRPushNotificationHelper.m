@@ -166,9 +166,7 @@
 + (void)registerNotificationUnlessNeverAsked;
 {
     if([self shouldTryToRegister]) {
-        if ([[UIApplication sharedApplication] respondsToSelector:NSSelectorFromString(@"registerUserNotificationSettings:")]) {
-            UIUserNotificationSettings *settings = [[UIApplication sharedApplication] currentUserNotificationSettings];
-            [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+        if ([[UIApplication sharedApplication] respondsToSelector:NSSelectorFromString(@"registerForRemoteNotifications")]) {
             [[UIApplication sharedApplication] registerForRemoteNotifications];
         } else {
             [[UIApplication sharedApplication] registerForRemoteNotificationTypes:kPushNotificationRegisterTypes];
